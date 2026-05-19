@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IBYTE - PC Games Store</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+      font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:
+      radial-gradient(circle at top left, rgba(0,255,255,0.15), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(255,0,255,0.15), transparent 30%);
+      z-index:-1;
+    }
+
+    header{
+      position:fixed;
+      top:0;
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      z-index:1000;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:30px;
+      font-family:'Orbitron',sans-serif;
+      color:#00ffff;
+      text-shadow:0 0 15px #00ffff;
+      font-weight:bold;
+    }
+
+    .logo img{
+      width:50px;
+      height:50px;
+      border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 0 15px #00ffff;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    nav a:hover{
+      color:#ff00ff;
+      text-shadow:0 0 10px #ff00ff;
+    }
+
+    .login-btn{
+      background:linear-gradient(90deg,#00ffff,#ff00ff);
+      padding:10px 20px;
+      border-radius:12px;
+    }
+
+    .hero{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 20px;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop')
+      center/cover;
+    }
+
+    .hero-content h1{
+      font-size:70px;
+      font-family:'Orbitron',sans-serif;
+      color:#00ffff;
+      text-shadow:0 0 20px #00ffff;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      max-width:800px;
+      margin:auto;
+      line-height:1.8;
+      color:#ddd;
+    }
+
+    .hero-buttons{
+      margin-top:35px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      margin:10px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+      border:none;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:#00ffff;
+      color:black;
+      box-shadow:0 0 20px #00ffff;
+    }
+
+    .btn-secondary{
+      border:2px solid #ff00ff;
+      color:#ff00ff;
+      box-shadow:0 0 15px #ff00ff;
+    }
+
+    section{
+      padding:120px 8%;
+    }
+
+    .section-title{
+      font-size:42px;
+      font-family:'Orbitron',sans-serif;
+      color:#00ffff;
+      margin-bottom:60px;
+      text-align:center;
+      text-shadow:0 0 10px #00ffff;
+    }
+
+    .games-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .game-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.3s;
+      backdrop-filter:blur(10px);
+    }
+
+    .game-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 25px rgba(0,255,255,0.4);
+    }
+
+    .game-card img{
+      width:100%;
+      height:350px;
+      object-fit:contain;
+      background:#000;
+      padding:10px;
+    }
+
+    .game-content{
+      padding:25px;
+    }
+
+    .game-content h3{
+      font-size:24px;
+      margin-bottom:10px;
+      color:#00ffff;
+      text-transform:uppercase;
+    }
+
+    .game-content p{
+      color:#ccc;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .download-btn{
+      display:inline-block;
+      width:100%;
+      text-align:center;
+      padding:12px;
+      background:linear-gradient(90deg,#00ffff,#ff00ff);
+      color:white;
+      text-decoration:none;
+      border-radius:12px;
+      font-weight:bold;
+    }
+
+    .subscription{
+      background:linear-gradient(135deg,
+      rgba(0,255,255,0.1),
+      rgba(255,0,255,0.1));
+      border-radius:30px;
+      text-align:center;
+      padding:80px 40px;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .subscription h2{
+      font-size:48px;
+      color:#00ffff;
+      font-family:'Orbitron',sans-serif;
+      margin-bottom:20px;
+    }
+
+    .price{
+      font-size:70px;
+      font-weight:bold;
+      color:#ff00ff;
+      text-shadow:0 0 20px #ff00ff;
+      margin:30px 0;
+    }
+
+    .subscription ul{
+      list-style:none;
+      margin-bottom:40px;
+    }
+
+    .subscription ul li{
+      margin:15px 0;
+      color:#ddd;
+      font-size:18px;
+    }
+
+    footer{
+      padding:40px;
+      text-align:center;
+      background:rgba(0,0,0,0.9);
+      border-top:1px solid rgba(255,255,255,0.1);
+      color:#888;
+    }
+
+    /* LOGIN */
+
+    .login-modal{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.8);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+    }
+
+    .login-box{
+      width:350px;
+      background:#111;
+      padding:35px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 0 30px rgba(0,255,255,0.3);
+      text-align:center;
+    }
+
+    .login-box h2{
+      color:#00ffff;
+      margin-bottom:25px;
+      font-family:'Orbitron',sans-serif;
+    }
+
+    .login-box input{
+      width:100%;
+      padding:14px;
+      margin-bottom:15px;
+      border:none;
+      border-radius:10px;
+      background:#1c1c1c;
+      color:white;
+      outline:none;
+    }
+
+    .login-box button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:linear-gradient(90deg,#00ffff,#ff00ff);
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    .close-btn{
+      background:#222 !important;
+    }
+
+    .welcome-user{
+      color:#00ffff;
+      margin-left:20px;
+      font-weight:bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <img src="https://i.postimg.cc/ry7PZY2G/file-0000000088fc720e8876c84e823e5532.png">
+    IBYTE
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#games">Games</a>
+    <a href="#subscription">Assinatura</a>
+    <a href="#contact">Contato</a>
+
+    <a href="#" class="login-btn" onclick="abrirLogin()">LOGIN</a>
+
+    <span id="usuarioLogado" class="welcome-user"></span>
+  </nav>
+
+</header>
+
+<section class="hero" id="home">
+
+  <div class="hero-content">
+
+    <h1>IBYTE GAMES</h1>
+
+    <p>
+      Baixe os melhores jogos de PC em um ambiente totalmente cyberpunk.
+      Jogos atuais, downloads rápidos e acesso exclusivo para assinantes.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#games" class="btn btn-primary">Explorar Games</a>
+      <a href="#subscription" class="btn btn-secondary">Plano Premium</a>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="games">
+
+  <h2 class="section-title">Jogos em Destaque</h2>
+
+<!-- BARRA DE BUSCA -->
+
+<div class="search-box">
+
+  <input
+    type="text"
+    id="searchGames"
+    placeholder="🔍 Pesquisar jogos..."
+    onkeyup="pesquisarJogos()"
+  >
+
+  <div class="search-glow"></div>
+
+</div>
+
+<!-- BOTÕES FILTRO -->
+
+<div class="filters-wrapper">
+
+  <div class="filters-container">
+
+    <button class="recent-btn" onclick="mostrarRecentes()">
+      ✦ RECÉM ADICIONADOS
+    </button>
+
+    <button class="recent-btn" onclick="mostrarTodosJogos()">
+      ✦ TODOS OS JOGOS
+    </button>
+
+    <button class="recent-btn" onclick="mostrarTerror()">
+      ✦ TERROR
+    </button>
+
+    <button class="recent-btn" onclick="mostrarMundoAberto()">
+      ✦ MUNDO ABERTO
+    </button>
+
+    <button class="recent-btn" onclick="mostrarLuta()">
+      ✦ LUTA
+    </button>
+
+<button class="recent-btn" onclick="mostrarInfantil()">
+  ✦ INFANTIL
+</button>
+
+    <button class="recent-btn" onclick="mostrarFavoritos()">
+      ♥ FAVORITOS
+    </button>
+
+  </div>
+
+  <div class="recent-glow"></div>
+
+</div>
+
+<style>
+
+/* =========================
+   FILTROS CYBERPUNK
+========================= */
+
+.filters-wrapper{
+  position:relative;
+  width:100%;
+  margin-bottom:35px;
+  overflow:hidden;
+}
+
+.filters-container{
+
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  gap:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding:10px 5px;
+
+  scroll-behavior:smooth;
+
+}
+
+.filters-container::-webkit-scrollbar{
+  display:none;
+}
+
+.filters-container{
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+
+/* BOTÕES */
+
+.recent-btn{
+
+  flex:none;
+
+  padding:14px 28px;
+
+  border:none;
+  outline:none;
+
+  border-radius:18px;
+
+  cursor:pointer;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  backdrop-filter:blur(15px);
+
+  color:white;
+
+  font-size:15px;
+  font-weight:600;
+  font-family:'Poppins',sans-serif;
+
+  letter-spacing:1px;
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  box-shadow:
+  0 0 15px rgba(0,255,255,0.15),
+  0 0 25px rgba(255,0,255,0.08),
+  inset 0 0 10px rgba(255,255,255,0.03);
+
+  transition:0.4s;
+}
+
+.recent-btn:hover{
+
+  border:1px solid #00ffff;
+
+  transform:scale(1.03);
+
+  box-shadow:
+  0 0 20px rgba(0,255,255,0.6),
+  0 0 45px rgba(255,0,255,0.4),
+  0 0 80px rgba(0,255,255,0.2);
+}
+
+/* GLOW */
+
+.recent-glow{
+
+  position:absolute;
+  inset:0;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,255,255,0.15),
+    rgba(255,0,255,0.15),
+    transparent
+  );
+
+  background-size:300%;
+
+  animation:recentGlow 5s linear infinite;
+
+  pointer-events:none;
+
+  opacity:0.6;
+}
+
+@keyframes recentGlow{
+
+  0%{
+    background-position:0%;
+  }
+
+  100%{
+    background-position:300%;
+  }
+
+}
+
+/* =========================
+   AÇÕES DOS JOGOS
+========================= */
+
+.game-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* DOWNLOAD */
+
+.download-btn{
+  flex:1;
+}
+
+/* FAVORITO */
+
+.favorite-btn{
+
+  width:52px;
+  height:52px;
+
+  border:none;
+  outline:none;
+
+  border-radius:14px;
+
+  cursor:pointer;
+
+  font-size:24px;
+  font-weight:bold;
+
+  color:white;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+  0 0 15px rgba(0,255,255,0.15),
+  0 0 25px rgba(255,0,255,0.08);
+
+  transition:0.3s;
+}
+
+.favorite-btn:hover{
+
+  transform:scale(1.08);
+
+  border:1px solid #ff2da6;
+
+  box-shadow:
+  0 0 20px rgba(255,45,166,0.6),
+  0 0 40px rgba(255,45,166,0.4);
+}
+
+.favorite-btn.active{
+
+  color:#ff2da6;
+
+  text-shadow:
+  0 0 10px #ff2da6,
+  0 0 25px #ff2da6;
+
+  border:1px solid rgba(255,45,166,0.6);
+
+  box-shadow:
+  0 0 20px rgba(255,45,166,0.6),
+  0 0 40px rgba(255,45,166,0.4);
+}
+
+</style>
+
+<script>
+
+function fecharPopup() {
+  document.getElementById("popupInfantil").style.display = "none";
+}
+
+/* FAVORITAR */
+
+function toggleFavorito(botao){
+
+  botao.classList.toggle("active");
+
+}
+
+/* FAVORITOS */
+
+function mostrarFavoritos(){
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+
+    jogo.style.display = "none";
+
+    let favorito =
+    jogo.querySelector(".favorite-btn");
+
+    if(favorito.classList.contains("active")){
+
+      jogo.style.display = "block";
+
+    }
+
+  });
+
+}
+
+/* RECENTES */
+
+function mostrarRecentes(){
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+    jogo.style.display = "none";
+  });
+
+  jogos[5].style.display = "block";
+  jogos[6].style.display = "block";
+
+}
+
+/* TODOS */
+
+function mostrarTodosJogos(){
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+    jogo.style.display = "block";
+  });
+
+}
+
+/* TERROR */
+
+function mostrarTerror(){
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+    jogo.style.display = "none";
+  });
+
+  jogos[0].style.display = "block";
+  jogos[2].style.display = "block";
+  jogos[4].style.display = "block";
+
+}
+
+/* MUNDO ABERTO */
+
+function mostrarMundoAberto(){
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+    jogo.style.display = "none";
+  });
+
+  jogos[3].style.display = "block";
+
+}
+
+/* LUTA */
+
+function mostrarLuta(){
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+    jogo.style.display = "none";
+  });
+
+  jogos[5].style.display = "block";
+  jogos[6].style.display = "block";
+
+}
+
+function mostrarInfantil() {
+  
+  let jogos = document.querySelectorAll(".game-card");
+  let temInfantil = false;
+  
+  jogos.forEach(function(jogo) {
+    
+    if (jogo.classList.contains("infantil")) {
+      jogo.style.display = "block";
+      temInfantil = true;
+    } else {
+      jogo.style.display = "none";
+    }
+    
+  });
+  
+  if (!temInfantil) {
+    alert("Nenhum jogo infantil disponível no momento!");
+  }
+  
+}
+
+</script>
+
+<style>
+
+/* =========================
+   SEARCH BAR CYBERPUNK
+========================= */
+
+.search-box{
+  position:relative;
+  width:100%;
+  max-width:650px;
+  margin:0 auto 60px auto;
+}
+
+.search-box input{
+  width:100%;
+  height:65px;
+
+  padding:0 25px;
+
+  border:none;
+  outline:none;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  backdrop-filter:blur(15px);
+
+  color:white;
+
+  font-size:18px;
+  font-family:'Poppins',sans-serif;
+  letter-spacing:1px;
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  box-shadow:
+  0 0 15px rgba(0,255,255,0.15),
+  0 0 25px rgba(255,0,255,0.08),
+  inset 0 0 10px rgba(255,255,255,0.03);
+
+  transition:0.4s;
+}
+
+.search-box input::placeholder{
+  color:#bdbdbd;
+}
+
+.search-box input:focus{
+
+  border:1px solid #00ffff;
+
+  transform:scale(1.02);
+
+  box-shadow:
+  0 0 20px rgba(0,255,255,0.6),
+  0 0 45px rgba(255,0,255,0.4),
+  0 0 80px rgba(0,255,255,0.2);
+}
+
+/* GLOW ANIMADO */
+
+.search-glow{
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,255,255,0.2),
+    rgba(255,0,255,0.2),
+    transparent
+  );
+
+  background-size:300%;
+
+  animation:searchGlow 5s linear infinite;
+
+  pointer-events:none;
+
+  opacity:0.6;
+}
+
+@keyframes searchGlow{
+
+  0%{
+    background-position:0%;
+  }
+
+  100%{
+    background-position:300%;
+  }
+
+}
+
+</style>
+
+<script>
+
+function pesquisarJogos(){
+
+  let input =
+  document.getElementById("searchGames").value.toLowerCase();
+
+  let jogos =
+  document.querySelectorAll(".game-card");
+
+  jogos.forEach(function(jogo){
+
+    let titulo =
+    jogo.querySelector("h3").innerText.toLowerCase();
+
+    let descricao =
+    jogo.querySelector("p").innerText.toLowerCase();
+
+    if(
+      titulo.includes(input) ||
+      descricao.includes(input)
+    ){
+      jogo.style.display = "block";
+    } else {
+      jogo.style.display = "none";
+    }
+
+  });
+
+}
+
+</script>
+
+<div class="games-grid">
+
+ <div class="game-card">
+  <img src="https://i.postimg.cc/wBQrNrdd/AILA-A-I-L-A.webp">
+
+  <div class="game-content">
+    <h3>AILA PC</h3>
+    <p>Jogo de terror psicológico com gráficos realistas e atmosfera intensa.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1VPrPlyX3yvcCWA_KbtVocyKp23szgOAb/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-card">
+  <img src="https://i.postimg.cc/zBG5DGDq/6-1-681108-52.webp">
+
+  <div class="game-content">
+    <h3>DEVIL HUNT PC</h3>
+    <p>Caçador de demônios em um mundo sombrio cheio de criaturas sobrenaturais.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1ytUiZNCPQfsFPw3VX_NMLMEz45ZRP0nL/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-card">
+  <img src="https://i.postimg.cc/Rhxk6C44/header.webp">
+
+  <div class="game-content">
+    <h3>DOLL IMPOSTOR PC</h3>
+    <p>Cuide de bonecas possuídas e descubra o impostor antes do tempo acabar.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1123Na7SFVTwn_ik7aXwCZBuqG3RMklOQ/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-card">
+  <img src="https://i.postimg.cc/nrTH3yhf/dead-rising-3-apocalypse-edition-apocalypse-edition-pc-jogo-steam-europe-cover.webp">
+
+  <div class="game-content">
+    <h3>DEAD RISING 3 PC</h3>
+    <p>Sobreviva ao apocalipse zumbi criando armas improvisadas.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1U1WX44YN9-94l6Ujqs5f8ZEN1a7rX_fO/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-card">
+  <img src="https://i.postimg.cc/2SdgfQf9/f8020468a65fc4120057eecfc030a889.webp">
+
+  <div class="game-content">
+    <h3>OUTLAST PC</h3>
+    <p>Hospital psiquiátrico abandonado cheio de horrores.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1lm9YCULnyXRAoVOgXWVJfvD7OACLv1TK/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-card">
+  <img src="https://i.postimg.cc/vBGPp07z/header.webp">
+
+  <div class="game-content">
+    <h3>DRAGON BALL SPARKING ZERO</h3>
+    <p>Batalhas intensas com personagens icônicos.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1Eh1tLWgqin2xwyz6LhooHCcWHbTZ6F-G/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-card">
+  <img src="https://i.postimg.cc/Vs2dJ0d7/7-1728078970.webp">
+
+  <div class="game-content">
+    <h3>SWORD ART ONLINE FRACTURED DAYDREAM</h3>
+    <p>Combates rápidos em mundo virtual instável.</p>
+
+    <div class="game-actions">
+      <a href="https://drive.google.com/file/d/1hbchoqF-GeLauXiqRBVNhJuelR6SvVV0/view?usp=drive_link"
+         class="download-btn" target="_blank">Download</a>
+
+      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+    </div>
+  </div>
+</div>
+</div>
+
+</section>
+
+<section id="subscription">
+
+  <div class="subscription">
+
+    <h2>PLANO PREMIUM</h2>
+
+    <p>Tenha acesso total aos jogos da plataforma.</p>
+
+    <div class="price">R$25/mês</div>
+
+    <ul>
+      <li>✔ Acesso ilimitado aos jogos</li>
+      <li>✔ Downloads rápidos</li>
+      <li>✔ Novos jogos toda semana</li>
+      <li>✔ Atualizações frequentes</li>
+    </ul>
+
+    <button class="btn btn-primary" onclick="abrirPagamento()">
+      ASSINAR AGORA
+    </button>
+
+  </div>
+
+</section>
+
+<footer id="contact">
+  <p>© 2026 IBYTE - Todos os direitos reservados</p>
+</footer>
+
+<!-- LOGIN MODAL -->
+
+<div class="login-modal" id="loginModal">
+
+  <div class="login-box">
+
+    <h2>LOGIN IBYTE</h2>
+
+    <input type="text" id="usuario" placeholder="Usuário">
+
+    <input type="password" id="senha" placeholder="Senha">
+
+    <button onclick="fazerLogin()">ENTRAR / CADASTRAR</button>
+
+    <button class="close-btn" onclick="fecharLogin()">FECHAR</button>
+
+  </div>
+
+</div>
+
+<script>
+
+function abrirPagamento() {
+  window.open(
+    "https://link.infinitepay.io/nolaggameplay/VC1D-ooRPGL1C7r-25,00",
+    "_blank"
+  );
+}
+
+function abrirLogin(){
+  document.getElementById("loginModal").style.display = "flex";
+}
+
+function fecharLogin(){
+  document.getElementById("loginModal").style.display = "none";
+}
+
+function fazerLogin(){
+
+  let usuario = document.getElementById("usuario").value;
+  let senha = document.getElementById("senha").value;
+
+  if(usuario === "" || senha === ""){
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  localStorage.setItem("ibyteUser", usuario);
+
+  document.getElementById("usuarioLogado").innerHTML =
+  "👤 " + usuario;
+
+  fecharLogin();
+
+  alert("Login realizado com sucesso!");
+}
+
+window.onload = function(){
+
+  let usuarioSalvo = localStorage.getItem("ibyteUser");
+
+  if(usuarioSalvo){
+    document.getElementById("usuarioLogado").innerHTML =
+    "👤 " + usuarioSalvo;
+  }
+
+}
+
+</script>
+
+<!-- BOTÃO WHATSAPP -->
+
+<a href="https://wa.me/558596441308"
+   class="whatsapp-button"
+   target="_blank">
+
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+       alt="WhatsApp">
+
+</a>
+
+<style>
+
+.whatsapp-button{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  width:70px;
+  height:70px;
+  background:#25D366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 25px rgba(37,211,102,0.7);
+  z-index:99999;
+  transition:0.3s;
+}
+
+.whatsapp-button:hover{
+  transform:scale(1.1);
+}
+
+.whatsapp-button img{
+  width:38px;
+  height:38px;
+}
+
+.details-btn{
+
+  width:100%;
+  margin-top:10px;
+
+  padding:10px; /* menor pra bater com download */
+
+  text-align:center;
+
+  border-radius:12px;
+
+  font-weight:bold;
+  letter-spacing:1px;
+
+  cursor:pointer;
+
+  color:white;
+
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+
+  box-shadow:
+  0 0 15px rgba(0,255,255,0.35),
+  0 0 25px rgba(255,0,255,0.25);
+
+  transition:0.3s;
+
+  font-family:'Poppins',sans-serif;
+
+  font-size:14px; /* deixa igual mais leve */
+}
+
+.details-btn:hover{
+
+  transform:scale(1.03);
+
+  box-shadow:
+  0 0 25px rgba(0,255,255,0.6),
+  0 0 45px rgba(255,0,255,0.4);
+
+  filter:brightness(1.1);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.popup-box {
+  background: #111;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.popup-box h2 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.popup-box p {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.popup-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  color: white;
+  cursor: pointer;
+}
+
+</style>
+
+<div id="popupInfantil" class="popup">
+  <div class="popup-box">
+    <h2>⚠️ Aviso</h2>
+    <p>Nenhum jogo infantil disponível no momento.</p>
+    <button onclick="fecharPopup()">OK</button>
+  </div>
+</div>
+
+</body>
+</html>
