@@ -780,7 +780,10 @@ function mostrarInfantil() {
   });
   
   if (!temInfantil) {
-    alert("Nenhum jogo infantil disponível no momento!");
+    document.getElementById("popupText").innerText =
+      "Nenhum jogo infantil disponível no momento!";
+    
+    document.getElementById("popupInfantil").style.display = "flex";
   }
   
 }
@@ -926,122 +929,146 @@ function pesquisarJogos(){
 
 <div class="games-grid">
 
- <div class="game-card">
-  <img src="https://i.postimg.cc/wBQrNrdd/AILA-A-I-L-A.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/wBQrNrdd/AILA-A-I-L-A.webp">
 
-  <div class="game-content">
-    <h3>AILA PC</h3>
-    <p>Jogo de terror psicológico com gráficos realistas e atmosfera intensa.</p>
+    <div class="game-content">
+      <h3>AILA PC</h3>
+      <p>Jogo de terror psicológico com gráficos realistas e atmosfera intensa.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1VPrPlyX3yvcCWA_KbtVocyKp23szgOAb/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1VPrPlyX3yvcCWA_KbtVocyKp23szgOAb/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="game-card">
-  <img src="https://i.postimg.cc/zBG5DGDq/6-1-681108-52.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/zBG5DGDq/6-1-681108-52.webp">
 
-  <div class="game-content">
-    <h3>DEVIL HUNT PC</h3>
-    <p>Caçador de demônios em um mundo sombrio cheio de criaturas sobrenaturais.</p>
+    <div class="game-content">
+      <h3>DEVIL HUNT PC</h3>
+      <p>Caçador de demônios em um mundo sombrio cheio de criaturas sobrenaturais.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1ytUiZNCPQfsFPw3VX_NMLMEz45ZRP0nL/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1ytUiZNCPQfsFPw3VX_NMLMEz45ZRP0nL/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="game-card">
-  <img src="https://i.postimg.cc/Rhxk6C44/header.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/Rhxk6C44/header.webp">
 
-  <div class="game-content">
-    <h3>DOLL IMPOSTOR PC</h3>
-    <p>Cuide de bonecas possuídas e descubra o impostor antes do tempo acabar.</p>
+    <div class="game-content">
+      <h3>DOLL IMPOSTOR PC</h3>
+      <p>Cuide de bonecas possuídas e descubra o impostor antes do tempo acabar.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1123Na7SFVTwn_ik7aXwCZBuqG3RMklOQ/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1123Na7SFVTwn_ik7aXwCZBuqG3RMklOQ/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="game-card">
-  <img src="https://i.postimg.cc/nrTH3yhf/dead-rising-3-apocalypse-edition-apocalypse-edition-pc-jogo-steam-europe-cover.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/nrTH3yhf/dead-rising-3-apocalypse-edition-apocalypse-edition-pc-jogo-steam-europe-cover.webp">
 
-  <div class="game-content">
-    <h3>DEAD RISING 3 PC</h3>
-    <p>Sobreviva ao apocalipse zumbi criando armas improvisadas.</p>
+    <div class="game-content">
+      <h3>DEAD RISING 3 PC</h3>
+      <p>Sobreviva ao apocalipse zumbi criando armas improvisadas.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1U1WX44YN9-94l6Ujqs5f8ZEN1a7rX_fO/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1U1WX44YN9-94l6Ujqs5f8ZEN1a7rX_fO/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="game-card">
-  <img src="https://i.postimg.cc/2SdgfQf9/f8020468a65fc4120057eecfc030a889.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/2SdgfQf9/f8020468a65fc4120057eecfc030a889.webp">
 
-  <div class="game-content">
-    <h3>OUTLAST PC</h3>
-    <p>Hospital psiquiátrico abandonado cheio de horrores.</p>
+    <div class="game-content">
+      <h3>OUTLAST PC</h3>
+      <p>Hospital psiquiátrico abandonado cheio de horrores.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1lm9YCULnyXRAoVOgXWVJfvD7OACLv1TK/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1lm9YCULnyXRAoVOgXWVJfvD7OACLv1TK/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="game-card">
-  <img src="https://i.postimg.cc/vBGPp07z/header.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/vBGPp07z/header.webp">
 
-  <div class="game-content">
-    <h3>DRAGON BALL SPARKING ZERO</h3>
-    <p>Batalhas intensas com personagens icônicos.</p>
+    <div class="game-content">
+      <h3>DRAGON BALL SPARKING ZERO</h3>
+      <p>Batalhas intensas com personagens icônicos.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1Eh1tLWgqin2xwyz6LhooHCcWHbTZ6F-G/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1Eh1tLWgqin2xwyz6LhooHCcWHbTZ6F-G/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="game-card">
-  <img src="https://i.postimg.cc/Vs2dJ0d7/7-1728078970.webp">
+  <div class="game-card">
+    <img src="https://i.postimg.cc/Vs2dJ0d7/7-1728078970.webp">
 
-  <div class="game-content">
-    <h3>SWORD ART ONLINE FRACTURED DAYDREAM</h3>
-    <p>Combates rápidos em mundo virtual instável.</p>
+    <div class="game-content">
+      <h3>SWORD ART ONLINE FRACTURED DAYDREAM</h3>
+      <p>Combates rápidos em mundo virtual instável.</p>
 
-    <div class="game-actions">
-      <a href="https://drive.google.com/file/d/1hbchoqF-GeLauXiqRBVNhJuelR6SvVV0/view?usp=drive_link"
-         class="download-btn" target="_blank">Download</a>
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1hbchoqF-GeLauXiqRBVNhJuelR6SvVV0/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
 
-      <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
     </div>
   </div>
+
+
+  <!-- 🔥 FORZA HORIZON 5 -->
+  <div class="game-card">
+    <img src="https://i.postimg.cc/JzBN5jjv/header.webp">
+
+    <div class="game-content">
+      <h3>FORZA HORIZON 5 PC</h3>
+      <p>
+        Explore um mundo aberto incrível com corridas insanas,
+        gráficos realistas e centenas de carros.
+      </p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1ftBDqzVh0ByeKoM4hSd3OJXyn5sjWq6n/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 </div>
 
@@ -1268,15 +1295,175 @@ window.onload = function(){
   cursor: pointer;
 }
 
+<style>
+
+/* =========================
+   SEU CSS (NÃO MEXER NO RESTO)
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:white;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+}
+
+/* =========================
+   FILTROS SLIDE (ARRASTAR)
+========================= */
+
+.filters-wrapper{
+  position:relative;
+  width:100%;
+  margin-bottom:35px;
+  overflow:hidden;
+}
+
+.filters-container{
+  display:flex;
+  gap:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding:10px 5px;
+
+  scroll-behavior:smooth;
+
+  cursor:grab;
+
+  user-select:none;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width:none;
+}
+
+.filters-container::-webkit-scrollbar{
+  display:none;
+}
+
+.filters-container:active{
+  cursor:grabbing;
+}
+
+/* BOTÕES */
+
+.recent-btn{
+  flex:none;
+
+  padding:14px 28px;
+
+  border:none;
+  outline:none;
+
+  border-radius:18px;
+
+  cursor:pointer;
+
+  background:linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  color:white;
+
+  font-size:15px;
+  font-weight:600;
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  transition:0.3s;
+}
+
+.recent-btn:hover{
+  transform:scale(1.05);
+  border:1px solid #00ffff;
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.popup-box {
+  background: #111;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+}
+
+.popup-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  color: white;
+  cursor: pointer;
+}
+
 </style>
+
+
 
 <div id="popupInfantil" class="popup">
   <div class="popup-box">
     <h2>⚠️ Aviso</h2>
-    <p>Nenhum jogo infantil disponível no momento.</p>
+    <p id="popupText">Nenhum jogo encontrado.</p>
     <button onclick="fecharPopup()">OK</button>
   </div>
 </div>
+
+<script>
+  const slider = document.querySelector(".filters-container");
+  
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+  
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+  });
+  
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+  });
+  
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+</script>
 
 </body>
 </html>
