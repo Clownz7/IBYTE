@@ -398,41 +398,22 @@
 <!-- BOTÕES FILTRO -->
 
 <div class="filters-wrapper">
-
-  <div class="filters-container">
-
-    <button class="recent-btn" onclick="mostrarRecentes()">
-      ✦ RECÉM ADICIONADOS
-    </button>
-
-    <button class="recent-btn" onclick="mostrarTodosJogos()">
-      ✦ TODOS OS JOGOS
-    </button>
-
-    <button class="recent-btn" onclick="mostrarTerror()">
-      ✦ TERROR
-    </button>
-
-    <button class="recent-btn" onclick="mostrarMundoAberto()">
-      ✦ MUNDO ABERTO
-    </button>
-
-    <button class="recent-btn" onclick="mostrarLuta()">
-      ✦ LUTA
-    </button>
-
-<button class="recent-btn" onclick="mostrarInfantil()">
-  ✦ INFANTIL
-</button>
-
-    <button class="recent-btn" onclick="mostrarFavoritos()">
-      ♥ FAVORITOS
-    </button>
-
+  
+  <div class="filters-container" id="filtersContainer">
+    
+    <button class="recent-btn" onclick="mostrarRecentes()">✦ RECÉM ADICIONADOS</button>
+    <button class="recent-btn" onclick="mostrarTodosJogos()">✦ TODOS OS JOGOS</button>
+    <button class="recent-btn" onclick="mostrarTerror()">✦ TERROR</button>
+    <button class="recent-btn" onclick="mostrarMundoAberto()">✦ MUNDO ABERTO</button>
+    <button class="recent-btn" onclick="mostrarLuta()">✦ LUTA</button>
+    <button class="recent-btn" onclick="mostrarInfantil()">✦ INFANTIL</button>
+    <button class="recent-btn" onclick="mostrarFavoritos()">♥ FAVORITOS</button>
+    
+    <!-- 🔥 SETA -->
+    <button class="arrow-next" onclick="scrollFilters()">›</button>
+    
   </div>
-
-  <div class="recent-glow"></div>
-
+  
 </div>
 
 <style>
@@ -444,15 +425,10 @@
 .filters-wrapper{
   position:relative;
   width:100%;
-  margin-bottom:35px;
   overflow:hidden;
 }
 
 .filters-container{
-
-  position:relative;
-  z-index:2;
-
   display:flex;
   gap:16px;
 
@@ -461,17 +437,81 @@
 
   padding:10px 5px;
 
-  scroll-behavior:smooth;
+  cursor:grab;
+  user-select:none;
 
+  scrollbar-width:none;
 }
 
 .filters-container::-webkit-scrollbar{
   display:none;
 }
 
-.filters-container{
-  -ms-overflow-style:none;
-  scrollbar-width:none;
+/* BOTÕES */
+.recent-btn{
+  flex:none;
+
+  padding:14px 28px;
+  border:none;
+  border-radius:18px;
+
+  cursor:pointer;
+
+  background:linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  color:white;
+
+  font-weight:600;
+
+  border:1px solid rgba(0,255,255,0.25);
+}
+
+/* 🔥 SETA */
+.arrow-next{
+  flex:none;
+
+  width:55px;
+  height:55px;
+
+  border:none;
+  border-radius:18px;
+
+  cursor:pointer;
+
+  font-size:30px;
+  font-weight:bold;
+
+  color:white;
+
+  background:linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+    0 0 15px rgba(0,255,255,0.15),
+    0 0 25px rgba(255,0,255,0.08);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:0.2s;
+}
+
+/* efeito clique */
+.arrow-next:active{
+  transform:scale(0.9);
+  box-shadow:0 0 25px rgba(0,255,255,0.7);
 }
 
 /* BOTÕES */
@@ -1423,6 +1463,41 @@ body{
   cursor: pointer;
 }
 
+.arrow-next{
+  flex:none;
+
+  width:55px;
+  height:55px;
+
+  border:none;
+  border-radius:18px;
+
+  cursor:pointer;
+
+  font-size:30px;
+  font-weight:bold;
+
+  color:white;
+
+  background:linear-gradient(
+    145deg,
+    rgba(0,255,255,0.08),
+    rgba(255,0,255,0.08)
+  );
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+    0 0 15px rgba(0,255,255,0.15),
+    0 0 25px rgba(255,0,255,0.08);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 </style>
 
 
@@ -1436,31 +1511,40 @@ body{
 </div>
 
 <script>
-  const slider = document.querySelector(".filters-container");
+  const slider = document.getElementById("filtersContainer");
   
   let isDown = false;
   let startX;
   let scrollLeft;
   
+  // quando clica
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
+    slider.classList.add("active");
     startX = e.pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
   });
   
+  // quando solta
   slider.addEventListener("mouseup", () => {
     isDown = false;
+    slider.classList.remove("active");
   });
   
+  // quando sai da área
   slider.addEventListener("mouseleave", () => {
     isDown = false;
+    slider.classList.remove("active");
   });
   
+  // quando move o mouse
   slider.addEventListener("mousemove", (e) => {
     if (!isDown) return;
     e.preventDefault();
+    
     const x = e.pageX - slider.offsetLeft;
     const walk = (x - startX) * 2;
+    
     slider.scrollLeft = scrollLeft - walk;
   });
 </script>
