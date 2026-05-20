@@ -346,24 +346,24 @@
 
 <body>
 
-<header>
-
+<header class="header">
+  
   <div class="logo">
     <img src="https://i.postimg.cc/ry7PZY2G/file-0000000088fc720e8876c84e823e5532.png">
     IBYTE
   </div>
-
+  
   <nav>
     <a href="#home">Home</a>
     <a href="#games">Games</a>
     <a href="#subscription">Assinatura</a>
     <a href="#contact">Contato</a>
-
+    
     <a href="#" class="login-btn" onclick="abrirLogin()">LOGIN</a>
-
+    
     <span id="usuarioLogado" class="welcome-user"></span>
   </nav>
-
+  
 </header>
 
 <section class="hero" id="home">
@@ -1512,32 +1512,52 @@ body{
 
 <style>
 
-/* DIMINUIR TOPO MOBILE */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:12px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  z-index:1000;
+}
 
-@media (max-width:768px) {
-  
-  header {
-    padding: 8px 10px;
+/* CELULAR */
+@media (max-width:768px){
+
+  header{
+    padding:6px 8px;   /* 🔥 menor altura */
   }
-  
-  .logo {
-    font-size: 20px;
+
+  .logo{
+    font-size:14px;
+    gap:5px;
   }
-  
-  .logo img {
-    width: 38px;
-    height: 38px;
+
+  .logo img{
+    width:26px;
+    height:26px;
   }
-  
-  nav a {
-    font-size: 13px;
-    margin-left: 12px;
+
+  nav a{
+    margin-left:6px;
+    font-size:10px;
   }
-  
-  .login-btn {
-    padding: 7px 12px;
+
+  .login-btn{
+    padding:4px 6px;
+    font-size:10px;
+    border-radius:6px;
   }
-  
+
+  .welcome-user{
+    font-size:10px;
+    margin-left:5px;
+  }
 }
 
 </style>
