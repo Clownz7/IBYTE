@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
   <title>IBYTE - PC Games Store</title>
 
@@ -1512,7 +1512,61 @@ body{
 
 <style>
 
+/* MENU MOBILE DESLIZANTE */
 
+@media (max-width:768px) {
+  
+  header {
+    padding: 15px;
+    gap: 12px;
+    
+    overflow: hidden;
+  }
+  
+  .logo {
+    flex: none;
+    font-size: 24px;
+  }
+  
+  nav {
+    
+    flex: 1;
+    
+    display: flex;
+    align-items: center;
+    
+    gap: 18px;
+    
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+    white-space: nowrap;
+    
+    -webkit-overflow-scrolling: touch;
+    
+    scrollbar-width: none;
+    
+    scroll-behavior: smooth;
+    
+    touch-action: pan-x;
+  }
+  
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  nav a {
+    flex: none;
+    margin-left: 0;
+    font-size: 15px;
+  }
+  
+  .welcome-user {
+    flex: none;
+    font-size: 14px;
+  }
+  
+}
 
 </style>
 
