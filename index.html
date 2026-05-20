@@ -1498,30 +1498,54 @@ body{
   justify-content:center;
 }
 
+
+
 <style>
 
-/* RESPONSIVIDADE CELULAR */
+/* MOBILE */
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
   
-  header {
-    padding: 10px 15px;
-  }
-  
-  .logo {
-    width: 55px;
-  }
-  
-  .logo-text {
-    font-size: 28px;
-  }
+  /* MENU TOPO DESLIZANTE */
   
   nav {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    
+    white-space: nowrap;
+    
     gap: 12px;
+    
+    padding-bottom: 5px;
+    
+    -webkit-overflow-scrolling: touch;
+    
+    scrollbar-width: none;
+  }
+  
+  nav::-webkit-scrollbar {
+    display: none;
   }
   
   nav a {
-    font-size: 15px;
+    flex: none;
+    margin-left: 0;
+  }
+  
+  /* VALOR PAGAMENTO */
+  
+  .subscription {
+    width: 100%;
+    padding: 40px 20px;
+  }
+  
+  .price {
+    font-size: 42px;
+    word-break: break-word;
   }
   
 }
