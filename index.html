@@ -422,12 +422,16 @@
   <div class="filters-container" id="filtersContainer">
     
     <button class="recent-btn" onclick="mostrarRecentes()">✦ RECÉM ADICIONADOS</button>
-    <button class="recent-btn" onclick="mostrarTodosJogos()">✦ TODOS OS JOGOS</button>
-    <button class="recent-btn" onclick="mostrarTerror()">✦ TERROR</button>
-    <button class="recent-btn" onclick="mostrarMundoAberto()">✦ MUNDO ABERTO</button>
-    <button class="recent-btn" onclick="mostrarLuta()">✦ LUTA</button>
-    <button class="recent-btn" onclick="mostrarInfantil()">✦ INFANTIL</button>
-    <button class="recent-btn" onclick="mostrarFavoritos()">♥ FAVORITOS</button>
+<button class="recent-btn" onclick="mostrarTodosJogos()">✦ TODOS OS JOGOS</button>
+<button class="recent-btn" onclick="mostrarTerror()">✦ TERROR</button>
+<button class="recent-btn" onclick="mostrarMundoAberto()">✦ MUNDO ABERTO</button>
+<button class="recent-btn" onclick="mostrarLuta()">✦ LUTA</button>
+<button class="recent-btn" onclick="mostrarInfantil()">✦ INFANTIL</button>
+
+<!-- 🔥 AVENTURA ADICIONADO AQUI -->
+<button class="recent-btn" onclick="mostrarAventura()">✦ AVENTURA</button>
+
+<button class="recent-btn" onclick="mostrarFavoritos()">♥ FAVORITOS</button>
     
     <!-- 🔥 SETA -->
     <button class="arrow-next" onclick="scrollFilters()">›</button>
@@ -716,112 +720,110 @@ function fecharPopup() {
 
 /* FAVORITAR */
 
-function toggleFavorito(botao){
-
+function toggleFavorito(botao) {
   botao.classList.toggle("active");
-
 }
 
 /* FAVORITOS */
 
-function mostrarFavoritos(){
-
+function mostrarFavoritos() {
+  
   let jogos =
-  document.querySelectorAll(".game-card");
-
-  jogos.forEach(function(jogo){
-
+    document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
+    
     jogo.style.display = "none";
-
+    
     let favorito =
-    jogo.querySelector(".favorite-btn");
-
-    if(favorito.classList.contains("active")){
-
+      jogo.querySelector(".favorite-btn");
+    
+    if (favorito.classList.contains("active")) {
       jogo.style.display = "block";
-
     }
-
+    
   });
-
+  
 }
 
 /* RECENTES */
 
-function mostrarRecentes(){
-
+function mostrarRecentes() {
+  
   let jogos =
-  document.querySelectorAll(".game-card");
-
-  jogos.forEach(function(jogo){
+    document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
     jogo.style.display = "none";
   });
-
+  
   jogos[5].style.display = "block";
   jogos[6].style.display = "block";
-
+  
 }
 
 /* TODOS */
 
-function mostrarTodosJogos(){
-
+function mostrarTodosJogos() {
+  
   let jogos =
-  document.querySelectorAll(".game-card");
-
-  jogos.forEach(function(jogo){
+    document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
     jogo.style.display = "block";
   });
-
+  
 }
 
 /* TERROR */
 
-function mostrarTerror(){
-
+function mostrarTerror() {
+  
   let jogos =
-  document.querySelectorAll(".game-card");
-
-  jogos.forEach(function(jogo){
+    document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
     jogo.style.display = "none";
   });
-
+  
   jogos[0].style.display = "block";
   jogos[2].style.display = "block";
   jogos[4].style.display = "block";
-
+  
 }
 
 /* MUNDO ABERTO */
 
-function mostrarMundoAberto(){
-
+function mostrarMundoAberto() {
+  
   let jogos =
-  document.querySelectorAll(".game-card");
-
-  jogos.forEach(function(jogo){
+    document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
     jogo.style.display = "none";
   });
-
+  
   jogos[3].style.display = "block";
-
+  
 }
 
 /* LUTA */
 
-function mostrarLuta(){
-
+function mostrarLuta() {
+  
   let jogos =
-  document.querySelectorAll(".game-card");
-
-  jogos.forEach(function(jogo){
+    document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
     jogo.style.display = "none";
   });
-
+  
   jogos[5].style.display = "block";
   jogos[6].style.display = "block";
-
+  
 }
+
+/* INFANTIL */
 
 function mostrarInfantil() {
   
@@ -845,7 +847,34 @@ function mostrarInfantil() {
     
     document.getElementById("popupInfantil").style.display = "flex";
   }
+}
+
+/* AVENTURA */
+
+function mostrarAventura() {
   
+  let jogos =
+    document.querySelectorAll(".game-card");
+  
+  let encontrou = false;
+  
+  jogos.forEach(function(jogo) {
+    
+    jogo.style.display = "none";
+    
+    if (jogo.getAttribute("data-category") === "aventura") {
+      jogo.style.display = "block";
+      encontrou = true;
+    }
+    
+  });
+  
+  if (!encontrou) {
+    document.getElementById("popupText").innerText =
+      "Nenhum jogo de aventura disponível no momento!";
+    
+    document.getElementById("popupInfantil").style.display = "flex";
+  }
 }
 
 </script>
@@ -989,7 +1018,7 @@ function pesquisarJogos(){
 
 <div class="games-grid">
 
-  <div class="game-card">
+  <div class="game-card" data-category="terror">
     <img src="https://i.postimg.cc/wBQrNrdd/AILA-A-I-L-A.webp">
 
     <div class="game-content">
@@ -1006,7 +1035,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card">
+  <div class="game-card" data-category="acao">
     <img src="https://i.postimg.cc/zBG5DGDq/6-1-681108-52.webp">
 
     <div class="game-content">
@@ -1023,7 +1052,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card">
+  <div class="game-card" data-category="terror">
     <img src="https://i.postimg.cc/Rhxk6C44/header.webp">
 
     <div class="game-content">
@@ -1040,7 +1069,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card">
+  <div class="game-card" data-category="zumbi">
     <img src="https://i.postimg.cc/nrTH3yhf/dead-rising-3-apocalypse-edition-apocalypse-edition-pc-jogo-steam-europe-cover.webp">
 
     <div class="game-content">
@@ -1057,7 +1086,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card">
+  <div class="game-card" data-category="terror">
     <img src="https://i.postimg.cc/2SdgfQf9/f8020468a65fc4120057eecfc030a889.webp">
 
     <div class="game-content">
@@ -1074,7 +1103,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card">
+  <div class="game-card" data-category="luta">
     <img src="https://i.postimg.cc/vBGPp07z/header.webp">
 
     <div class="game-content">
@@ -1091,7 +1120,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card">
+  <div class="game-card" data-category="anime">
     <img src="https://i.postimg.cc/Vs2dJ0d7/7-1728078970.webp">
 
     <div class="game-content">
@@ -1108,16 +1137,12 @@ function pesquisarJogos(){
   </div>
 
 
-  <!-- 🔥 FORZA HORIZON 5 -->
-  <div class="game-card">
+  <div class="game-card" data-category="corrida">
     <img src="https://i.postimg.cc/JzBN5jjv/header.webp">
 
     <div class="game-content">
       <h3>FORZA HORIZON 5 PC</h3>
-      <p>
-        Explore um mundo aberto incrível com corridas insanas,
-        gráficos realistas e centenas de carros.
-      </p>
+      <p>Explore um mundo aberto incrível com corridas insanas gráficos realistas e centenas de carros.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1ftBDqzVh0ByeKoM4hSd3OJXyn5sjWq6n/view?usp=drive_link"
@@ -1128,6 +1153,41 @@ function pesquisarJogos(){
     </div>
   </div>
 
+
+  <div class="game-card" data-category="tatico">
+    <img src="https://i.postimg.cc/4NkRKtRs/7271144.webp">
+
+    <div class="game-content">
+      <h3>READY OR NOT PC</h3>
+      <p>Jogo tático de SWAT com missões realistas e perigosas.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1q-16-byModxsQ0kXp_iFr2bXk-bi9j0Q/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="game-card" data-category="aventura">
+    <img src="https://i.postimg.cc/7LCKMsS9/6-1-708279-52.webp">
+
+    <div class="game-content">
+      <h3>ONIRISM PC</h3>
+      <p>Jogo de aventura com mundo criativo e exploração única.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1syPBAPMXlIg5PzKjY4_DCFkKMEkRJFpQ/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 </div>
 </div>
