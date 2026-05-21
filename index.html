@@ -843,27 +843,42 @@ function mostrarFavoritos() {
       jogo.querySelector(".favorite-btn");
     
     if (favorito.classList.contains("active")) {
-      jogo.style.display = "block";
+      jogo.style.display = "flex";
     }
     
   });
   
 }
 
-/* RECENTES */
+/* RECÉM ADICIONADOS */
 
 function mostrarRecentes() {
-  
+
   let jogos =
     document.querySelectorAll(".game-card");
-  
+
   jogos.forEach(function(jogo) {
+
     jogo.style.display = "none";
+
   });
-  
-  jogos[5].style.display = "block";
-  jogos[6].style.display = "block";
-  
+
+  /* PEGA OS 4 ÚLTIMOS */
+
+  for (
+    let i = jogos.length - 1;
+    i >= jogos.length - 4;
+    i--
+  ) {
+
+    if (jogos[i]) {
+
+      jogos[i].style.display = "flex";
+
+    }
+
+  }
+
 }
 
 /* TODOS */
@@ -874,7 +889,7 @@ function mostrarTodosJogos() {
     document.querySelectorAll(".game-card");
   
   jogos.forEach(function(jogo) {
-    jogo.style.display = "block";
+    jogo.style.display = "flex";
   });
   
 }
@@ -890,9 +905,9 @@ function mostrarTerror() {
     jogo.style.display = "none";
   });
   
-  jogos[0].style.display = "block";
-  jogos[2].style.display = "block";
-  jogos[4].style.display = "block";
+  jogos[0].style.display = "flex";
+  jogos[2].style.display = "flex";
+  jogos[4].style.display = "flex";
   
 }
 
@@ -907,7 +922,7 @@ function mostrarMundoAberto() {
     jogo.style.display = "none";
   });
   
-  jogos[3].style.display = "block";
+  jogos[3].style.display = "flex";
   
 }
 
@@ -922,8 +937,8 @@ function mostrarLuta() {
     jogo.style.display = "none";
   });
   
-  jogos[5].style.display = "block";
-  jogos[6].style.display = "block";
+  jogos[5].style.display = "flex";
+  jogos[6].style.display = "flex";
   
 }
 
@@ -937,7 +952,7 @@ function mostrarInfantil() {
   jogos.forEach(function(jogo) {
     
     if (jogo.classList.contains("infantil")) {
-      jogo.style.display = "block";
+      jogo.style.display = "flex";
       temInfantil = true;
     } else {
       jogo.style.display = "none";
