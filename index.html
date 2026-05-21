@@ -400,6 +400,110 @@
 
   <h2 class="section-title">Jogos em Destaque</h2>
 
+<!-- =========================
+     BANNER CYBERPUNK
+========================= -->
+
+<div class="cyber-banner">
+
+  <!-- SUA FOTO -->
+  <img src="https://i.postimg.cc/WbQPf32D/Whats-App-Image-2026-05-21-at-14-59-12.jpg">
+
+  <!-- OVERLAY -->
+  <div class="cyber-overlay"></div>
+
+</div>
+
+<style>
+
+/* =========================
+   CYBER BANNER
+========================= */
+
+.cyber-banner{
+
+  width:100%;
+  height:420px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:25px;
+
+  margin-bottom:50px;
+
+  border:1px solid rgba(0,255,255,0.25);
+
+  background:#000;
+
+  box-shadow:
+  0 0 25px rgba(0,255,255,0.25),
+  0 0 50px rgba(255,0,255,0.15),
+  inset 0 0 25px rgba(0,255,255,0.08);
+}
+
+/* FOTO */
+
+.cyber-banner img {
+  
+  width: 100%;
+  height: 100%;
+  
+  object-fit: fill;
+  
+  transition: 0.5s;
+}
+
+  transform:scale(1.02);
+}
+
+/* EFEITO ESCURO */
+
+.cyber-overlay{
+
+  position:absolute;
+  inset:0;
+
+  background:
+
+  linear-gradient(
+    90deg,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.15)
+  );
+
+  box-shadow:
+  inset 0 0 120px rgba(0,255,255,0.12),
+  inset 0 0 120px rgba(255,0,255,0.08);
+}
+
+/* HOVER */
+
+.cyber-banner:hover img{
+
+  transform:scale(1.05);
+
+  filter:
+  brightness(1.05)
+  saturate(1.2);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .cyber-banner{
+
+    height:240px;
+
+    border-radius:18px;
+  }
+
+}
+
+</style>
+
 <!-- BARRA DE BUSCA -->
 
 <div class="search-box">
@@ -1016,6 +1120,34 @@ function pesquisarJogos(){
 
 </script>
 
+<style>
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .game-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .game-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .game-content p {
+    min-height: 70px;
+  }
+  
+  .game-actions {
+    margin-top: auto;
+  }
+</style>
+
 <div class="games-grid">
 
   <div class="game-card" data-category="terror">
@@ -1040,7 +1172,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>DEVIL HUNT PC</h3>
-      <p>Caçador de demônios em um mundo sombrio cheio de criaturas sobrenaturais.</p>
+      <p>Caçador de demônios enfrenta criaturas sobrenaturais em um mundo sombrio perigoso.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1ytUiZNCPQfsFPw3VX_NMLMEz45ZRP0nL/view?usp=drive_link"
@@ -1074,7 +1206,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>DEAD RISING 3 PC</h3>
-      <p>Sobreviva ao apocalipse zumbi criando armas improvisadas.</p>
+      <p>Sobreviva ao apocalipse zumbi criando armas improvisadas contra hordas perigosas.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1U1WX44YN9-94l6Ujqs5f8ZEN1a7rX_fO/view?usp=drive_link"
@@ -1091,7 +1223,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>OUTLAST PC</h3>
-      <p>Hospital psiquiátrico abandonado cheio de horrores.</p>
+      <p>Explore hospital abandonado cheio de horrores criaturas bizarras e muito desespero.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1lm9YCULnyXRAoVOgXWVJfvD7OACLv1TK/view?usp=drive_link"
@@ -1108,7 +1240,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>DRAGON BALL SPARKING ZERO</h3>
-      <p>Batalhas intensas com personagens icônicos.</p>
+      <p>Batalhas intensas com personagens icônicos em lutas rápidas cheias de destruição.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1Eh1tLWgqin2xwyz6LhooHCcWHbTZ6F-G/view?usp=drive_link"
@@ -1125,7 +1257,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>SWORD ART ONLINE FRACTURED DAYDREAM</h3>
-      <p>Combates rápidos em mundo virtual instável.</p>
+      <p>Combates rápidos em mundo virtual instável cheio de inimigos e muitos desafios.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1hbchoqF-GeLauXiqRBVNhJuelR6SvVV0/view?usp=drive_link"
@@ -1142,7 +1274,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>FORZA HORIZON 5 PC</h3>
-      <p>Explore um mundo aberto incrível com corridas insanas gráficos realistas e centenas de carros.</p>
+      <p>Explore um mundo aberto incrível com corridas insanas e gráficos realistas.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1ftBDqzVh0ByeKoM4hSd3OJXyn5sjWq6n/view?usp=drive_link"
@@ -1159,7 +1291,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>READY OR NOT PC</h3>
-      <p>Jogo tático de SWAT com missões realistas e perigosas.</p>
+      <p>Jogo tático de SWAT com missões perigosas e combate extremamente realista intenso.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1q-16-byModxsQ0kXp_iFr2bXk-bi9j0Q/view?usp=drive_link"
@@ -1176,10 +1308,45 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>ONIRISM PC</h3>
-      <p>Jogo de aventura com mundo criativo e exploração única.</p>
+      <p>Jogo de aventura com exploração criativa desafios únicos e ambientes misteriosos.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1syPBAPMXlIg5PzKjY4_DCFkKMEkRJFpQ/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/4NcV6kDx/Conclusao-Final-Fantasy-VII-Remake-Multiplataforma-912x569.webp">
+
+    <div class="game-content">
+      <h3>FINAL FANTASY VII REMAKE PC</h3>
+      <p>Um ex-soldado enfrenta poderosa corporação enquanto tenta salvar todo o planeta.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1g1vP_LjFpAoE8xXB1TD5b6vs5hrIruiu/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/FH65JH6K/apps-65427-13722499700478908-eac1e9c1-255b-4f29-94dc-03b6ed8ad558.webp">
+
+<div class="game-content">
+      <h3>FINAL FANTASY VII REBIRTH PC</h3>
+      <p>Cloud e seus aliados enfrentam Sephiroth
+em uma jornada épica cheia de mistérios,
+batalhas intensas e segredos que podem
+mudar o destino do planeta.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1PnkvlaeIRdWcm_UiPxt6uJW51cVudV8d/view?usp=drive_link"
            class="download-btn" target="_blank">Download</a>
 
         <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
