@@ -1445,7 +1445,10 @@ mudar o destino do planeta.</p>
 
 <div class="game-content">
       <h3>Crisis Core: Final Fantasy VII Reunion PC</h3>
-      <p>a emocionante história de Zack Fair em uma aventura épica que antecede os eventos de Final Fantasy VII. Enfrente inimigos poderosos, descubra segredos da Shinra e testemunhe os acontecimentos que mudaram para sempre o destino do planeta. Uma jornada inesquecível de amizade, coragem e heroísmo.</p>
+      <p>Cloud e seus aliados enfrentam Sephiroth
+em uma jornada épica cheia de mistérios,
+batalhas intensas e segredos que podem
+mudar o destino do planeta.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/19aJqhMKzaCyr4kESxi5ftMiROYKlAhqr/view?usp=drive_link"
@@ -1455,6 +1458,23 @@ mudar o destino do planeta.</p>
       </div>
     </div>
   </div>
+  
+  <div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/7P0BMPf0/header.webp">
+
+<div class="game-content">
+      <h3>FINAL FANTASY XIII-2 PC</h3>
+      <p>Misturando fantasia, ficção científica e drama emocional, o jogo apresenta uma aventura marcada por paradoxos temporais, batalhas intensas e o confronto contra uma força misteriosa que manipula o fluxo do tempo.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1WmSqmGyiLSDpkHuT37OJUSkyE5nWysLJ/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+  
 
 </div>
 
@@ -1715,24 +1735,22 @@ body{
   overflow:hidden;
 }
 
-.filters-container{
-  display:flex;
-  gap:16px;
-
-  overflow-x:auto;
-  overflow-y:hidden;
-
-  padding:10px 5px;
-
-  scroll-behavior:smooth;
-
-  cursor:grab;
-
-  user-select:none;
-
+.filters-container {
+  display: flex;
+  gap: 16px;
+  
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  padding: 10px 5px;
+  
+  scroll-behavior: smooth;
+  
   -webkit-overflow-scrolling: touch;
-
-  scrollbar-width:none;
+  
+  touch-action: pan-x;
+  
+  scrollbar-width: none;
 }
 
 .filters-container::-webkit-scrollbar{
@@ -1912,42 +1930,101 @@ header {
 </div>
 
 <script>
-  const slider = document.getElementById("filtersContainer");
-  
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-  
-  // quando clica
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("active");
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
+
+const slider = document.getElementById("filtersContainer");
+
+let isDown = false;
+let startX = 0;
+let scrollLeft = 0;
+
+/* =========================
+   PC
+========================= */
+
+slider.addEventListener("mousedown", (e) => {
+
+  isDown = true;
+
+  startX = e.pageX - slider.offsetLeft;
+
+  scrollLeft = slider.scrollLeft;
+
+});
+
+slider.addEventListener("mouseup", () => {
+
+  isDown = false;
+
+});
+
+slider.addEventListener("mouseleave", () => {
+
+  isDown = false;
+
+});
+
+slider.addEventListener("mousemove", (e) => {
+
+  if (!isDown) return;
+
+  e.preventDefault();
+
+  const x = e.pageX - slider.offsetLeft;
+
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+});
+
+/* =========================
+   CELULAR
+========================= */
+
+slider.addEventListener("touchstart", (e) => {
+
+  isDown = true;
+
+  startX = e.touches[0].pageX - slider.offsetLeft;
+
+  scrollLeft = slider.scrollLeft;
+
+}, { passive: true });
+
+slider.addEventListener("touchend", () => {
+
+  isDown = false;
+
+});
+
+slider.addEventListener("touchmove", (e) => {
+
+  if (!isDown) return;
+
+  const x = e.touches[0].pageX - slider.offsetLeft;
+
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+}, { passive: true });
+
+/* =========================
+   BOTÃO SETA
+========================= */
+
+function scrollFilters(){
+
+  slider.scrollBy({
+
+    left:300,
+
+    behavior:"smooth"
+
   });
-  
-  // quando solta
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-  
-  // quando sai da área
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-  
-  // quando move o mouse
-  slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2;
-    
-    slider.scrollLeft = scrollLeft - walk;
-  });
+
+}
+
 </script>
 
 </script>
@@ -2036,46 +2113,7 @@ header {
 
 }
 
-<style>
-
-/* MOBILE */
-
-@media (max-width:768px){
-
-  .filters-container{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-
-    touch-action:pan-x;
-  }
-
-  .recent-btn{
-    pointer-events:auto;
-    touch-action:manipulation;
-  }
-
-}
-
 </style>
-
-<script>
-
-const botoesCategorias =
-document.querySelectorAll(".recent-btn");
-
-botoesCategorias.forEach((botao)=>{
-
-  botao.addEventListener("touchstart", function(e){
-
-    e.stopPropagation();
-
-  });
-
-});
-
-</script>
-
-</body>
 
 </body>
 </html>
