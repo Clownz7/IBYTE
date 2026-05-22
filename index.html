@@ -1911,32 +1911,34 @@ header {
 
 <script>
 
-<script>
-
 const slider = document.getElementById("filtersContainer");
 
 let isDown = false;
 let startX;
 let scrollLeft;
-
-/* PC */
+let moved = false;
 
 slider.addEventListener("mousedown", (e) => {
-
   isDown = true;
+  moved = false;
 
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
-
 });
 
 document.addEventListener("mouseup", () => {
   isDown = false;
 });
 
+slider.addEventListener("mouseleave", () => {
+  isDown = false;
+});
+
 slider.addEventListener("mousemove", (e) => {
 
-  if(!isDown) return;
+  if (!isDown) return;
+
+  moved = true;
 
   e.preventDefault();
 
@@ -1947,26 +1949,7 @@ slider.addEventListener("mousemove", (e) => {
 
 });
 
-/* CELULAR */
-
-let touchStartX = 0;
-let touchScroll = 0;
-
-slider.addEventListener("touchstart", (e)=>{
-
-  touchStartX = e.touches[0].pageX;
-  touchScroll = slider.scrollLeft;
-
-});
-
-slider.addEventListener("touchmove", (e)=>{
-
-  const x = e.touches[0].pageX;
-  const walk = (x - touchStartX) * 2;
-
-  slider.scrollLeft = touchScroll - walk;
-
-});
+</script>
 
 </script>
 
