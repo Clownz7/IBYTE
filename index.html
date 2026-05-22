@@ -1439,6 +1439,22 @@ mudar o destino do planeta.</p>
       </div>
     </div>
   </div>
+  
+  <div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/x1qDFP36/ffc18f055655638ef75df2716fadd93be2825f56efcdac0e72997ca8304c7410.webp">
+
+<div class="game-content">
+      <h3>Crisis Core: Final Fantasy VII Reunion PC</h3>
+      <p>a emocionante história de Zack Fair em uma aventura épica que antecede os eventos de Final Fantasy VII. Enfrente inimigos poderosos, descubra segredos da Shinra e testemunhe os acontecimentos que mudaram para sempre o destino do planeta. Uma jornada inesquecível de amizade, coragem e heroísmo.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/19aJqhMKzaCyr4kESxi5ftMiROYKlAhqr/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -1939,79 +1955,85 @@ header {
 <style>
 
 /* =========================
-   MOBILE - 2 COLUNAS JOGOS
+   GRID PC
 ========================= */
 
-@media (max-width:768px) {
-  
-  .game-content p {
-    min-height: 70px;
-  }
-  
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
 }
-  .games-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    padding: 0 !important;
+
+/* =========================
+   MOBILE - 2 COLUNAS
+========================= */
+
+@media (max-width:768px){
+
+  .games-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:12px !important;
+    padding:0 !important;
   }
-  
-  .game-card {
-    display: flex !important;
-    flex-direction: column !important;
-    
-    height: auto !important;
-    min-height: unset !important;
-    
-    border-radius: 15px;
-    overflow: hidden;
+
+  .game-card{
+    display:flex !important;
+    flex-direction:column !important;
+    height:auto !important;
+    min-height:unset !important;
+    border-radius:15px;
+    overflow:hidden;
   }
-  
-  .game-card img {
-    width: 100%;
-    height: 130px !important;
-    object-fit: cover;
+
+  .game-card img{
+    width:100%;
+    height:130px !important;
+    object-fit:cover;
   }
-  
-  .game-content {
-    padding: 10px !important;
+
+  .game-content{
+    padding:10px !important;
   }
-  
-  .game-content h3 {
-    font-size: 13px !important;
-    line-height: 1.3;
-    margin-bottom: 5px;
+
+  .game-content h3{
+    font-size:13px !important;
+    line-height:1.3;
+    margin-bottom:5px;
   }
-  
-  .game-content p {
-    font-size: 11px !important;
-    line-height: 1.4;
-    
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    
-    margin-bottom: 10px;
+
+  .game-content p{
+    min-height:70px;
+    font-size:11px !important;
+    line-height:1.4;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+    margin-bottom:10px;
   }
-  
-  .game-actions {
-    display: flex !important;
-    align-items: center;
-    gap: 8px;
+
+  .game-actions{
+    display:flex !important;
+    align-items:center;
+    gap:8px;
   }
-  
-  .download-btn {
-    flex: 1;
-    padding: 10px 6px !important;
-    font-size: 12px !important;
+
+  .download-btn{
+    flex:1;
+    padding:10px 6px !important;
+    font-size:12px !important;
   }
-  
-  .favorite-btn {
-    width: 40px !important;
-    height: 40px !important;
-    flex: none;
+
+  .favorite-btn{
+    width:40px !important;
+    height:40px !important;
+    flex:none;
   }
+
 }
 
 </style>
