@@ -1156,9 +1156,17 @@ function pesquisarJogos(){
 
 /* IMAGEM */
 .game-card img {
+  
   width: 100%;
+  
   height: 220px;
-  object-fit: cover;
+  
+  object-fit: contain;
+  
+  background: #000;
+  
+  padding: 10px;
+  
 }
 
 /* CONTEÚDO */
@@ -1735,22 +1743,24 @@ body{
   overflow:hidden;
 }
 
-.filters-container {
-  display: flex;
-  gap: 16px;
-  
-  overflow-x: auto;
-  overflow-y: hidden;
-  
-  padding: 10px 5px;
-  
-  scroll-behavior: smooth;
-  
+.filters-container{
+  display:flex;
+  gap:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding:10px 5px;
+
+  scroll-behavior:smooth;
+
+  cursor:grab;
+
+  user-select:none;
+
   -webkit-overflow-scrolling: touch;
-  
-  touch-action: pan-x;
-  
-  scrollbar-width: none;
+
+  scrollbar-width:none;
 }
 
 .filters-container::-webkit-scrollbar{
@@ -1930,101 +1940,42 @@ header {
 </div>
 
 <script>
-
-const slider = document.getElementById("filtersContainer");
-
-let isDown = false;
-let startX = 0;
-let scrollLeft = 0;
-
-/* =========================
-   PC
-========================= */
-
-slider.addEventListener("mousedown", (e) => {
-
-  isDown = true;
-
-  startX = e.pageX - slider.offsetLeft;
-
-  scrollLeft = slider.scrollLeft;
-
-});
-
-slider.addEventListener("mouseup", () => {
-
-  isDown = false;
-
-});
-
-slider.addEventListener("mouseleave", () => {
-
-  isDown = false;
-
-});
-
-slider.addEventListener("mousemove", (e) => {
-
-  if (!isDown) return;
-
-  e.preventDefault();
-
-  const x = e.pageX - slider.offsetLeft;
-
-  const walk = (x - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-});
-
-/* =========================
-   CELULAR
-========================= */
-
-slider.addEventListener("touchstart", (e) => {
-
-  isDown = true;
-
-  startX = e.touches[0].pageX - slider.offsetLeft;
-
-  scrollLeft = slider.scrollLeft;
-
-}, { passive: true });
-
-slider.addEventListener("touchend", () => {
-
-  isDown = false;
-
-});
-
-slider.addEventListener("touchmove", (e) => {
-
-  if (!isDown) return;
-
-  const x = e.touches[0].pageX - slider.offsetLeft;
-
-  const walk = (x - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-}, { passive: true });
-
-/* =========================
-   BOTÃO SETA
-========================= */
-
-function scrollFilters(){
-
-  slider.scrollBy({
-
-    left:300,
-
-    behavior:"smooth"
-
+  const slider = document.getElementById("filtersContainer");
+  
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  
+  // quando clica
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("active");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
   });
-
-}
-
+  
+  // quando solta
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+  
+  // quando sai da área
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+  
+  // quando move o mouse
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    
+    slider.scrollLeft = scrollLeft - walk;
+  });
 </script>
 
 </script>
