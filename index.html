@@ -446,13 +446,11 @@
 /* FOTO */
 
 .cyber-banner img {
-  
   width: 100%;
   height: 100%;
-  
   object-fit: fill;
-  
   transition: 0.5s;
+  transform: scale(1.02);
 }
 
   transform:scale(1.02);
@@ -556,31 +554,23 @@
   overflow:hidden;
 }
 
-.filters-container {
-  display: flex;
-  gap: 16px;
-  
-  overflow-x: auto;
-  overflow-y: hidden;
-  
-  padding: 10px 5px;
-  
-  cursor: grab;
-  user-select: none;
-  
-  scrollbar-width: none;
-  
-  position: relative;
-  z-index: 10;
-  -webkit-overflow-scrolling: touch;
+.filters-container{
+  display:flex;
+  gap:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding:10px 5px;
+
+  cursor:grab;
+  user-select:none;
+
+  scrollbar-width:none;
 }
 
-.recent-btn,
-.arrow-next {
-  position: relative;
-  z-index: 20;
-  pointer-events: auto !important;
-  touch-action: manipulation;
+.filters-container::-webkit-scrollbar{
+  display:none;
 }
 
 /* BOTÕES */
@@ -1921,34 +1911,32 @@ header {
 
 <script>
 
+<script>
+
 const slider = document.getElementById("filtersContainer");
 
 let isDown = false;
 let startX;
 let scrollLeft;
-let moved = false;
+
+/* PC */
 
 slider.addEventListener("mousedown", (e) => {
+
   isDown = true;
-  moved = false;
 
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
+
 });
 
 document.addEventListener("mouseup", () => {
   isDown = false;
 });
 
-slider.addEventListener("mouseleave", () => {
-  isDown = false;
-});
-
 slider.addEventListener("mousemove", (e) => {
 
-  if (!isDown) return;
-
-  moved = true;
+  if(!isDown) return;
 
   e.preventDefault();
 
@@ -1959,7 +1947,26 @@ slider.addEventListener("mousemove", (e) => {
 
 });
 
-</script>
+/* CELULAR */
+
+let touchStartX = 0;
+let touchScroll = 0;
+
+slider.addEventListener("touchstart", (e)=>{
+
+  touchStartX = e.touches[0].pageX;
+  touchScroll = slider.scrollLeft;
+
+});
+
+slider.addEventListener("touchmove", (e)=>{
+
+  const x = e.touches[0].pageX;
+  const walk = (x - touchStartX) * 2;
+
+  slider.scrollLeft = touchScroll - walk;
+
+});
 
 </script>
 
