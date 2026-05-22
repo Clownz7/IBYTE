@@ -446,11 +446,13 @@
 /* FOTO */
 
 .cyber-banner img {
+  
   width: 100%;
   height: 100%;
+  
   object-fit: fill;
+  
   transition: 0.5s;
-  transform: scale(1.02);
 }
 
   transform:scale(1.02);
@@ -1916,40 +1918,65 @@ const slider = document.getElementById("filtersContainer");
 let isDown = false;
 let startX;
 let scrollLeft;
-let moved = false;
+
+/* MOUSE PC */
 
 slider.addEventListener("mousedown", (e) => {
+
   isDown = true;
-  moved = false;
 
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
+
 });
 
 document.addEventListener("mouseup", () => {
+
   isDown = false;
+
 });
 
 slider.addEventListener("mouseleave", () => {
+
   isDown = false;
+
 });
 
 slider.addEventListener("mousemove", (e) => {
 
   if (!isDown) return;
 
-  moved = true;
-
   e.preventDefault();
 
   const x = e.pageX - slider.offsetLeft;
+
   const walk = (x - startX) * 2;
 
   slider.scrollLeft = scrollLeft - walk;
 
 });
 
-</script>
+/* TOUCH CELULAR */
+
+let touchStartX = 0;
+let touchScrollLeft = 0;
+
+slider.addEventListener("touchstart", (e) => {
+
+  touchStartX = e.touches[0].pageX;
+  touchScrollLeft = slider.scrollLeft;
+
+}, { passive:true });
+
+slider.addEventListener("touchmove", (e) => {
+
+  const x = e.touches[0].pageX;
+
+  const walk = (x - touchStartX) * 1.5;
+
+  slider.scrollLeft = touchScrollLeft - walk;
+
+}, { passive:true });
 
 </script>
 
