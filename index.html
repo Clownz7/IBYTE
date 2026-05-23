@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>IBYTE - PC Games Store</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#b90707">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -535,6 +537,7 @@
 <!-- 🔥 AVENTURA ADICIONADO AQUI -->
 <button class="recent-btn" onclick="mostrarAventura()">✦ AVENTURA</button>
 <button class="recent-btn" onclick="mostrarAcao()">✦ AÇÃO</button>
+<button class="recent-btn" onclick="mostrarWeb()">✦ WEB</button>
 <button class="recent-btn" onclick="mostrarFavoritos()">♥ FAVORITOS</button>
     
     <!-- 🔥 SETA -->
@@ -873,7 +876,14 @@ function mostrarRecentes() {
 
     if (jogos[i]) {
 
-      jogos[i].style.display = "flex";
+      let hidden =
+      jogos[i].getAttribute("data-hidden");
+
+      if(hidden !== "true"){
+
+        jogos[i].style.display = "flex";
+
+      }
 
     }
 
@@ -889,7 +899,22 @@ function mostrarTodosJogos() {
     document.querySelectorAll(".game-card");
   
   jogos.forEach(function(jogo) {
-    jogo.style.display = "flex";
+
+    let hidden =
+    jogo.getAttribute("data-hidden");
+
+    /* ESCONDE JOGOS WEB */
+
+    if(hidden === "true"){
+
+      jogo.style.display = "none";
+
+    } else {
+
+      jogo.style.display = "flex";
+
+    }
+
   });
   
 }
@@ -902,12 +927,18 @@ function mostrarTerror() {
     document.querySelectorAll(".game-card");
   
   jogos.forEach(function(jogo) {
-    jogo.style.display = "none";
+
+    if(jogo.getAttribute("data-category") === "terror"){
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+
   });
-  
-  jogos[0].style.display = "flex";
-  jogos[2].style.display = "flex";
-  jogos[4].style.display = "flex";
   
 }
 
@@ -919,10 +950,18 @@ function mostrarMundoAberto() {
     document.querySelectorAll(".game-card");
   
   jogos.forEach(function(jogo) {
-    jogo.style.display = "none";
+
+    if(jogo.getAttribute("data-category") === "mundoaberto"){
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+
   });
-  
-  jogos[3].style.display = "flex";
   
 }
 
@@ -934,11 +973,18 @@ function mostrarLuta() {
     document.querySelectorAll(".game-card");
   
   jogos.forEach(function(jogo) {
-    jogo.style.display = "none";
+
+    if(jogo.getAttribute("data-category") === "luta"){
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+
   });
-  
-  jogos[5].style.display = "flex";
-  jogos[6].style.display = "flex";
   
 }
 
@@ -982,7 +1028,7 @@ function mostrarAventura() {
     jogo.style.display = "none";
     
     if (jogo.getAttribute("data-category") === "aventura") {
-      jogo.style.display = "block";
+      jogo.style.display = "flex";
       encontrou = true;
     }
     
@@ -999,6 +1045,7 @@ function mostrarAventura() {
 /* =========================
    AÇÃO
 ========================= */
+
 function mostrarAcao() {
   
   let jogos = document.querySelectorAll(".game-card");
@@ -1006,9 +1053,61 @@ function mostrarAcao() {
   jogos.forEach(function(jogo) {
     
     if (jogo.getAttribute("data-category") === "acao") {
+
       jogo.style.display = "flex";
+
     } else {
+
       jogo.style.display = "none";
+
+    }
+    
+  });
+  
+}
+
+/* =========================
+   ANIME
+========================= */
+
+function mostrarAnime() {
+  
+  let jogos = document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
+    
+    if (jogo.getAttribute("data-category") === "anime") {
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+    
+  });
+  
+}
+
+/* =========================
+   JOGOS WEB
+========================= */
+
+function mostrarWeb() {
+  
+  let jogos = document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
+    
+    if (jogo.getAttribute("data-category") === "web") {
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
     }
     
   });
@@ -1549,6 +1648,41 @@ mudar o destino do planeta.</p>
       </div>
     </div>
   </div>
+
+<div class="game-card jogo-web"
+     data-category="web"
+     data-hidden="true">
+
+  <img src="https://i.postimg.cc/02LN0bVb/268fe055-63c3-4ed9-924e-3ffb6017f6b8.png">
+
+  <div class="game-content">
+
+    <h3>JOGOS ARCADE WEB</h3>
+
+    <p>
+     Jogos Arcade são experiências rápidas, diretas e cheias de ação, criadas para testar reflexos, precisão e raciocínio em poucos segundos de gameplay. Inspirados nos clássicos dos fliperamas, esses jogos trazem desafios progressivos, pontuações altas e aquela sensação viciante de “só mais uma tentativa”.
+    </p>
+
+    <div class="game-actions">
+
+      <!-- LINK DO JOGO -->
+      <a href="https://www.minijogos.com.br"
+         class="download-btn"
+         target="_blank">
+
+         JOGAR AGORA
+
+      </a>
+
+      <button class="favorite-btn"
+      onclick="toggleFavorito(this)">♥</button>
+
+    </div>
+
+  </div>
+
+</div>
+
 
 </div>
 
@@ -2258,6 +2392,87 @@ header {
     flex:none;
   }
 
+}
+
+<style>
+
+/* =========================
+   CARD DOS JOGOS
+========================= */
+
+.game-card{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* ESCONDER JOGOS WEB */
+.jogo-web{
+    display: none;
+}
+
+/* IMAGEM */
+.game-card img{
+    width: 100%;
+    display: block;
+}
+
+/* CONTEÚDO */
+.game-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 15px;
+}
+
+/* TÍTULO */
+.game-content h3{
+    color: white;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* DESCRIÇÃO */
+.game-content p{
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* ÁREA DOS BOTÕES */
+.game-actions{
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-top: 15px;
+}
+
+/* BOTÃO DOWNLOAD */
+.download-btn{
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg,#00e5ff,#ff00ff);
+}
+
+/* BOTÃO FAVORITO */
+.favorite-btn{
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    font-size: 20px;
 }
 
 </style>
