@@ -534,7 +534,7 @@
 
 <!-- 🔥 AVENTURA ADICIONADO AQUI -->
 <button class="recent-btn" onclick="mostrarAventura()">✦ AVENTURA</button>
-
+<button class="recent-btn" onclick="mostrarAcao()">✦ AÇÃO</button>
 <button class="recent-btn" onclick="mostrarFavoritos()">♥ FAVORITOS</button>
     
     <!-- 🔥 SETA -->
@@ -994,6 +994,25 @@ function mostrarAventura() {
     
     document.getElementById("popupInfantil").style.display = "flex";
   }
+}
+
+/* =========================
+   AÇÃO
+========================= */
+function mostrarAcao() {
+  
+  let jogos = document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
+    
+    if (jogo.getAttribute("data-category") === "acao") {
+      jogo.style.display = "flex";
+    } else {
+      jogo.style.display = "none";
+    }
+    
+  });
+  
 }
 
 </script>
@@ -1483,6 +1502,53 @@ mudar o destino do planeta.</p>
     </div>
   </div>
   
+  <div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/gJsbmrJ0/header.webp">
+
+<div class="game-content">
+      <h3>FINAL FANTASY XVI PC</h3>
+      <p>Em um mundo dilacerado por conflitos entre nações poderosas e criaturas lendárias chamadas Eikons, a sombra da guerra paira sobre todos.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1fMpEV6kOuxOCEuA6VwLjlGkq2327bwE-/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+ <div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/0yYtLFrY/2014-02-24-lr-ffxiii-capa.webp">
+
+<div class="game-content">
+      <h3>LIGHTNING RETURNS FINAL FANTASY XIII PC</h3>
+      <p>Em um mundo dilacerado por conflitos entre nações poderosas e criaturas lendárias chamadas Eikons, a sombra da guerra paira sobre todos.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1rH6kSbFP7nDuKbhPBP-56WVjn7P6Dypo/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/cLz0kstC/15694.webp">
+
+<div class="game-content">
+      <h3>MARVEL SPIDER MAN 2 PC</h3>
+      <p>Peter Parker e Miles Morales enfrentam novas ameaças em Nova York quando Kraven inicia uma grande caçada e o simbionte Venom começa a corromper Peter.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1APrUoWXx4Lp3TTyaSkcIJUMw74t7rxcW/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -1495,24 +1561,154 @@ mudar o destino do planeta.</p>
 
   <div class="subscription">
 
-    <h2>PLANO PREMIUM</h2>
+  <h2>PLANO PREMIUM</h2>
 
-    <p>Tenha acesso total aos jogos da plataforma.</p>
+  <p>Tenha acesso total aos jogos da plataforma.</p>
 
-    <div class="price">R$25/mês</div>
+  <div class="price">R$25/mês</div>
 
-    <ul>
-      <li>✔ Acesso ilimitado aos jogos</li>
-      <li>✔ Downloads rápidos</li>
-      <li>✔ Novos jogos toda semana</li>
-      <li>✔ Atualizações frequentes</li>
-    </ul>
+  <ul>
+    <li>✔ Acesso ilimitado aos jogos</li>
+    <li>✔ Downloads rápidos</li>
+    <li>✔ Novos jogos toda semana</li>
+    <li>✔ Atualizações frequentes</li>
+  </ul>
 
-    <button class="btn btn-primary" onclick="abrirPagamento()">
-      ASSINAR AGORA
+  <button class="btn btn-primary" onclick="abrirPagamentoModal()">
+    ASSINAR AGORA
+  </button>
+
+</div>
+
+<!-- MODAL -->
+<div id="pagamentoModal" class="modal-neon">
+
+  <div class="modal-content-neon">
+
+    <h2>Escolha o pagamento</h2>
+
+    <button class="btn-neon" onclick="abrirCartao()">
+      Cartão
     </button>
 
+    <button class="btn-neon" onclick="mostrarPix()">
+      PIX
+    </button>
+
+    <button class="btn-close-neon" onclick="fecharPagamentoModal()">
+      Fechar
+    </button>
+
+    <!-- PIX -->
+    <div id="pixArea" style="display:none;margin-top:20px;">
+
+      <img
+      src="https://i.postimg.cc/3WMxqYcB/Whats-App-Image-2026-05-23-at-07-42-23.jpg"
+      style="width:220px;border-radius:10px;border:2px solid #00ffff;">
+
+      <input type="text"
+      id="chavePix"
+      value="00020126330014br.gov.bcb.pix011108760337370520400005303986540525.005802BR5911Adrian Cris6009Sao Paulo62240520daqr12965617648681926304CF3F"
+      readonly>
+
+      <button class="btn-neon" onclick="copiarPix()">
+        Copiar PIX
+      </button>
+
+    </div>
+
   </div>
+
+</div>
+
+<script>
+
+function abrirPagamentoModal(){
+  document.getElementById("pagamentoModal").style.display = "flex";
+  document.getElementById("pixArea").style.display = "none";
+}
+
+function fecharPagamentoModal(){
+  document.getElementById("pagamentoModal").style.display = "none";
+}
+
+function abrirCartao(){
+  window.open(
+    "https://link.infinitepay.io/nolaggameplay/VC1D-ooRPGL1C7r-25,00",
+    "_blank"
+  );
+}
+
+function mostrarPix(){
+  document.getElementById("pixArea").style.display = "block";
+}
+
+function copiarPix(){
+  let pix = document.getElementById("chavePix");
+  pix.select();
+  document.execCommand("copy");
+  alert("PIX copiado!");
+}
+
+</script>
+
+<style>
+
+.modal-neon{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.modal-content-neon{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  width:320px;
+  text-align:center;
+  border:1px solid #00ffff;
+  color:white;
+}
+
+.btn-neon{
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+  border:none;
+  padding:12px 20px;
+  margin:5px;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+}
+
+.btn-close-neon{
+  background:#222;
+  border:none;
+  padding:10px 15px;
+  margin-top:10px;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+}
+
+#chavePix{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#000;
+  color:white;
+  text-align:center;
+}
+
+</style>
 
 </section>
 
