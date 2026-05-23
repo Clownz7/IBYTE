@@ -1,0 +1,16 @@
+{
+  "background_color": "#3f32b5",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "IByte GM",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "IByte GAMES PC",
+  "start_url": "/",
+  "theme_color": "#b90707",
+  "id": "IByte GM",
+  "description": "╔════════════════════╗\n🎮 BEM-VINDO À IBYTE STORE 🎮\n╚════════════════════╝\n\nSeja muito bem-vindo(a)! 🔥\nÉ um prazer ter você conosco na nossa comunidade de games. Aqui você encontra jogos premium para PC, suporte de qualidade e várias novidades exclusivas! 💻✨\n\n🎯 O que você encontra aqui:\n✅ Jogos premium\n✅ Atendimento rápido\n✅ Promoções exclusivas\n✅ Novidades e lançamentos\n✅ Suporte e ajuda quando precisar\n\nEsperamos que tenha a melhor experiência possível com a nossa loja! 🚀\nObrigado pela confiança e boas gameplays! 🎮👊",
+  "categories": [
+    "games"
+  ]
+}
