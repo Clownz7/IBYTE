@@ -4,8 +4,8 @@
 
   "description": "Baixe os melhores jogos de PC em uma plataforma cyberpunk moderna com downloads rápidos, jogos premium e experiência estilo aplicativo.",
 
-  "start_url": "/IBYTE/",
-  "scope": "/IBYTE/",
+  "start_url": "/",
+  "scope": "/",
 
   "display": "standalone",
 
