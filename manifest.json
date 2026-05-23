@@ -4,8 +4,8 @@
 
   "description": "Baixe os melhores jogos de PC em uma plataforma cyberpunk moderna com downloads rápidos, jogos premium e experiência estilo aplicativo.",
 
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/IBYTE/",
+  "scope": "/IBYTE/",
 
   "display": "standalone",
 
@@ -31,13 +31,13 @@
 
   "icons": [
     {
-      "src": "https://i.postimg.cc/9MCK9RzD/Whats-App-Image-2026-05-23-at-18-33-20-(1).png",
+      "src": "https://i.postimg.cc/ry7PZY2G/file-0000000088fc720e8876c84e823e5532.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://i.postimg.cc/YqGnhf8X/Whats-App-Image-2026-05-23-at-18-33-20-(1)-(1)-(1).png",
+      "src": "https://i.postimg.cc/ry7PZY2G/file-0000000088fc720e8876c84e823e5532.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
