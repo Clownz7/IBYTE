@@ -527,17 +527,30 @@
   
   <div class="filters-container" id="filtersContainer">
     
-    <button class="recent-btn" onclick="mostrarRecentes()">✦ RECÉM ADICIONADOS</button>
+   <button class="recent-btn" onclick="mostrarRecentes()">✦ RECÉM ADICIONADOS</button>
+
 <button class="recent-btn" onclick="mostrarTodosJogos()">✦ TODOS OS JOGOS</button>
+
 <button class="recent-btn" onclick="mostrarTerror()">✦ TERROR</button>
+
 <button class="recent-btn" onclick="mostrarMundoAberto()">✦ MUNDO ABERTO</button>
+
 <button class="recent-btn" onclick="mostrarLuta()">✦ LUTA</button>
+
+<button class="recent-btn" onclick="mostrarAventura()">✦ AVENTURA</button>
+
+<button class="recent-btn" onclick="mostrarAcao()">✦ AÇÃO</button>
+
+<button class="recent-btn" onclick="mostrarWeb()">✦ WEB</button>
+
+<button class="recent-btn" onclick="mostrarArquivos()">✦ ARQUIVOS</button>
+
 <button class="recent-btn" onclick="mostrarInfantil()">✦ INFANTIL</button>
 
-<!-- 🔥 AVENTURA ADICIONADO AQUI -->
-<button class="recent-btn" onclick="mostrarAventura()">✦ AVENTURA</button>
-<button class="recent-btn" onclick="mostrarAcao()">✦ AÇÃO</button>
-<button class="recent-btn" onclick="mostrarWeb()">✦ WEB</button>
+
+<!-- 🔞 HENTAI -->
+<button class="recent-btn" onclick="mostrarHentai()">✦ HENTAI</button>
+
 <button class="recent-btn" onclick="mostrarFavoritos()">♥ FAVORITOS</button>
     
     <!-- 🔥 SETA -->
@@ -866,8 +879,6 @@ function mostrarRecentes() {
 
   });
 
-  /* PEGA OS 4 ÚLTIMOS */
-
   for (
     let i = jogos.length - 1;
     i >= jogos.length - 4;
@@ -903,9 +914,11 @@ function mostrarTodosJogos() {
     let hidden =
     jogo.getAttribute("data-hidden");
 
-    /* ESCONDE JOGOS WEB */
-
-    if(hidden === "true"){
+    if(
+      hidden === "true" ||
+      jogo.classList.contains("jogo-web") ||
+      jogo.classList.contains("jogo-arquivos")
+    ){
 
       jogo.style.display = "none";
 
@@ -1042,9 +1055,7 @@ function mostrarAventura() {
   }
 }
 
-/* =========================
-   AÇÃO
-========================= */
+/* AÇÃO */
 
 function mostrarAcao() {
   
@@ -1066,9 +1077,7 @@ function mostrarAcao() {
   
 }
 
-/* =========================
-   ANIME
-========================= */
+/* ANIME */
 
 function mostrarAnime() {
   
@@ -1090,9 +1099,29 @@ function mostrarAnime() {
   
 }
 
-/* =========================
-   JOGOS WEB
-========================= */
+/* HEMTAI */
+
+function mostrarHentai() {
+  
+  let jogos = document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
+    
+    if (jogo.getAttribute("data-category") === "Hentai") {
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+    
+  });
+  
+}
+
+/* JOGOS WEB */
 
 function mostrarWeb() {
   
@@ -1101,6 +1130,28 @@ function mostrarWeb() {
   jogos.forEach(function(jogo) {
     
     if (jogo.getAttribute("data-category") === "web") {
+
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+    
+  });
+  
+}
+
+/* ARQUIVOS */
+
+function mostrarArquivos() {
+  
+  let jogos = document.querySelectorAll(".game-card");
+  
+  jogos.forEach(function(jogo) {
+    
+    if (jogo.getAttribute("data-category") === "arquivos") {
 
       jogo.style.display = "flex";
 
@@ -1413,7 +1464,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card" data-category="zumbi">
+  <div class="game-card" data-category="mundoaberto">
     <img src="https://i.postimg.cc/nrTH3yhf/dead-rising-3-apocalypse-edition-apocalypse-edition-pc-jogo-steam-europe-cover.webp">
 
     <div class="game-content">
@@ -1498,7 +1549,7 @@ function pesquisarJogos(){
   </div>
 
 
-  <div class="game-card" data-category="tatico">
+  <div class="game-card" data-category="acao">
     <img src="https://i.postimg.cc/4NkRKtRs/7271144.webp">
 
     <div class="game-content">
@@ -1660,7 +1711,7 @@ mudar o destino do planeta.</p>
     <h3>JOGOS ARCADE WEB</h3>
 
     <p>
-     Jogos Arcade são experiências rápidas, diretas e cheias de ação, criadas para testar reflexos, precisão e raciocínio em poucos segundos de gameplay. Inspirados nos clássicos dos fliperamas, esses jogos trazem desafios progressivos, pontuações altas e aquela sensação viciante de “só mais uma tentativa”.
+     Jogos Arcade são experiências rápidas, diretas e cheias de ação, criadas para testar reflexos, precisão e raciocínio em poucos segundos de gameplay. Inspirados nos clássicos dos fliperamas, esses jogos trazem desafios progressivos, pontuações altas e aquela sensação viciante de “só mais uma tentativa.
     </p>
 
     <div class="game-actions">
@@ -1683,10 +1734,140 @@ mudar o destino do planeta.</p>
 
 </div>
 
+<div class="game-card jogo-arquivos"
+     data-category="arquivos"
+     data-hidden="true">
+
+  <img src="https://i.postimg.cc/vHGCYK61/Chat-GPT-Image-24-de-mai-de-2026-08-59-31.png">
+
+  <div class="game-content">
+
+    <h3>ERRO DE DLL</h3>
+
+    <p>
+      Nesta área você encontra soluções simples e rápidas para corrigir erros de DLL, restaurar arquivos necessários, instalar componentes essenciais e fazer seus jogos voltarem a funcionar normalmente.
+    </p>
+
+    <div class="game-actions">
+
+      <a href="https://drive.google.com/drive/folders/1rtT5JFI2ykKW7X1y5fWFBcHojef-yisq?usp=drive_link"
+         class="download-btn"
+         target="_blank">
+
+         Download
+
+      </a>
+
+      <button class="favorite-btn"
+      onclick="toggleFavorito(this)">♥</button>
+
+    </div>
+
+  </div>
 
 </div>
 
+
+<div class="game-card jogo-web"
+     data-category="web"
+     data-hidden="true">
+
+  <img src="https://i.postimg.cc/5NkQ4Zk5/3a0d3ab8-67d6-4672-aabb-681318bd3a2e.png">
+
+  <div class="game-content">
+
+    <h3>JOGOS BEN 10</h3>
+
+    <p>
+     Entre em uma aventura cheia de ação ao lado de Ben Tennyson! Em Mini Jogos do Ben 10, você poderá testar suas habilidades em diversos desafios inspirados no universo do herói mais famoso do Omnitrix.
+    </p>
+
+    <div class="game-actions">
+
+      <!-- LINK DO JOGO -->
+      <a href="https://www.minijogos.com.br/jogos-de-ben-10"
+         class="download-btn"
+         target="_blank">
+
+         JOGAR AGORA
+
+      </a>
+
+      <button class="favorite-btn"
+      onclick="toggleFavorito(this)">♥</button>
+
+    </div>
+
+  </div>
+
 </div>
+
+<div class="game-card jogo-web"
+     data-category="web"
+     data-hidden="true">
+
+  <img src="https://i.postimg.cc/rsYrdbgS/3532c58a-6431-4441-bcde-9d818696d8af.png">
+
+  <div class="game-content">
+
+    <h3>COOP LOCAL</h3>
+
+    <p>
+    COOP LOCAL reúne dois jogadores em uma aventura cheia de ação, amizade e desafios eletrizantes. Em mundos coloridos inspirados em animes e games arcade, cada fase exige trabalho em equipe, habilidade e estratégia para derrotar inimigos poderosos,
+    </p>
+
+    <div class="game-actions">
+
+      <!-- LINK DO JOGO -->
+      <a href="https://www.minijogos.com.br/jogos-de-2-jogadores"
+         class="download-btn"
+         target="_blank">
+
+         JOGAR AGORA
+
+      </a>
+
+      <button class="favorite-btn"
+      onclick="toggleFavorito(this)">♥</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="game-card jogo-web"
+     data-category="web"
+     data-hidden="true">
+
+  <img src="https://i.postimg.cc/CM2Lv1wt/fe9ac03e-d7ff-4a84-a3d7-daa8b170a924.png">
+
+  <div class="game-content">
+
+    <h3>JOGOS GRANNY</h3>
+
+    <p>
+    Escape da casa assustadora da Granny antes que ela te encontre. Resolva enigmas, encontre chaves e sobreviva aos sustos enquanto tenta fugir em silêncio.
+    </p>
+
+    <div class="game-actions">
+
+      <!-- LINK DO JOGO -->
+      <a href="https://www.minijogos.com.br/procurar/GRANNY"
+         class="download-btn"
+         target="_blank">
+
+         JOGAR AGORA
+
+      </a>
+
+      <button class="favorite-btn"
+      onclick="toggleFavorito(this)">♥</button>
+
+    </div>
+
+  </div>
+
 </div>
 
 </section>
@@ -2394,85 +2575,88 @@ header {
 
 }
 
-<style>
-
 /* =========================
    CARD DOS JOGOS
 ========================= */
 
-.game-card{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: #111;
-    border-radius: 20px;
-    overflow: hidden;
+.game-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #111;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 /* ESCONDER JOGOS WEB */
-.jogo-web{
-    display: none;
+.jogo-web {
+  display: none;
+}
+
+/* ESCONDER ARQUIVOS */
+.jogo-arquivos {
+  display: none;
 }
 
 /* IMAGEM */
-.game-card img{
-    width: 100%;
-    display: block;
+.game-card img {
+  width: 100%;
+  display: block;
 }
 
 /* CONTEÚDO */
-.game-content{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 15px;
+.game-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px;
 }
 
 /* TÍTULO */
-.game-content h3{
-    color: white;
-    font-size: 22px;
-    margin-bottom: 10px;
+.game-content h3 {
+  color: white;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 /* DESCRIÇÃO */
-.game-content p{
-    color: #ccc;
-    line-height: 1.5;
+.game-content p {
+  color: #ccc;
+  line-height: 1.5;
 }
 
 /* ÁREA DOS BOTÕES */
-.game-actions{
-    margin-top: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding-top: 15px;
+.game-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
 }
 
 /* BOTÃO DOWNLOAD */
-.download-btn{
-    flex: 1;
-    text-align: center;
-    padding: 12px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(90deg,#00e5ff,#ff00ff);
+.download-btn {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(90deg, #00e5ff, #ff00ff);
 }
 
 /* BOTÃO FAVORITO */
-.favorite-btn{
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    background: #222;
-    color: white;
-    font-size: 20px;
+.favorite-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #222;
+  color: white;
+  font-size: 20px;
 }
 
 </style>
