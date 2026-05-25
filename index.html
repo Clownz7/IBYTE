@@ -2679,15 +2679,43 @@ slider.addEventListener("touchstart", (e) => {
   
 }, { passive: true });
 
+let isDragging = false;
+
+slider.addEventListener("touchstart", (e) => {
+  
+  isDragging = false;
+  
+  startX = e.touches[0].pageX - slider.offsetLeft;
+  
+  scrollLeft = slider.scrollLeft;
+  
+}, { passive: true });
+
 slider.addEventListener("touchmove", (e) => {
   
   const x = e.touches[0].pageX - slider.offsetLeft;
   
-  const walk = (x - startX) * 2;
+  const walk = x - startX;
   
+  // só considera arrasto se mover bastante
+  if (isDragging) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+if (isDragging) {
   slider.scrollLeft = scrollLeft - walk;
+}
   
 }, { passive: true });
+
+slider.addEventListener("touchend", () => {
+  
+  setTimeout(() => {
+    isDragging = false;
+  }, 50);
+  
+});
 
 slider.addEventListener("touchend", () => {
   
@@ -2703,15 +2731,13 @@ const buttons = document.querySelectorAll(".recent-btn");
 
 buttons.forEach((btn) => {
   
-  btn.addEventListener("touchstart", () => {
+  btn.addEventListener("click", (e) => {
     
-    btn.style.transform = "scale(0.95)";
-    
-  });
-  
-  btn.addEventListener("touchend", () => {
-    
-    btn.style.transform = "scale(1)";
+    // impede clique falso durante arrasto
+    if (isDragging) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     
   });
   
