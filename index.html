@@ -445,8 +445,6 @@
   inset 0 0 25px rgba(0,255,255,0.08);
 }
 
-/* FOTO */
-
 .cyber-banner img {
   
   width: 100%;
@@ -455,9 +453,8 @@
   object-fit: fill;
   
   transition: 0.5s;
-}
-
-  transform:scale(1.02);
+  
+  transform: scale(1.02);
 }
 
 /* EFEITO ESCURO */
@@ -586,30 +583,19 @@
   
   scrollbar-width: none;
   
-  /* MOBILE TOUCH */
-  -webkit-overflow-scrolling: touch;
+  /* TOUCH CELULAR */
   touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
 }
 
 .filters-container::-webkit-scrollbar {
   display: none;
 }
-
-/* BOTÕES */
-
-.recent-btn {
-  
-  touch-action: manipulation;
-  
-}
-
 /* BOTÕES */
 .recent-btn{
-
   flex:none;
 
   padding:14px 28px;
-
   border:none;
   border-radius:18px;
 
@@ -626,11 +612,6 @@
   font-weight:600;
 
   border:1px solid rgba(0,255,255,0.25);
-
-  /* CORREÇÃO TOUCH MOBILE */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-
 }
 
 /* 🔥 SETA */
@@ -1330,7 +1311,7 @@ function pesquisarJogos(){
       titulo.includes(input) ||
       descricao.includes(input)
     ){
-      jogo.style.display = "block";
+      
     } else {
       jogo.style.display = "none";
     }
@@ -2391,25 +2372,9 @@ window.onload = function() {
   cursor: pointer;
 }
 
+</style>
+
 <style>
-
-/* =========================
-   SEU CSS (NÃO MEXER NO RESTO)
-========================= */
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#050505;
-  color:white;
-  font-family:'Poppins',sans-serif;
-  overflow-x:hidden;
-}
 
 header {
   position: fixed;
@@ -2462,87 +2427,72 @@ header {
 
 </style>
 
+
+<div id="popupInfantil" class="popup">
+  <div class="popup-box">
+    <h2>⚠️ Aviso</h2>
+    <p id="popupText">Nenhum jogo encontrado.</p>
+    <button onclick="fecharPopup()">OK</button>
+  </div>
+</div>
+
 <script>
 
 const slider = document.getElementById("filtersContainer");
 
-let isDragging = false;
-let startX = 0;
-let scrollLeft = 0;
+let isDown = false;
+let startX;
+let scrollLeft;
 
-/* TOUCH MOBILE */
-
-slider.addEventListener("touchstart", (e) => {
-  
-  isDragging = true;
-  
-  startX = e.touches[0].pageX;
-  
-  scrollLeft = slider.scrollLeft;
-  
-}, { passive: true });
-
-slider.addEventListener("touchmove", (e) => {
-  
-  if (!isDragging) return;
-  
-  const x = e.touches[0].pageX;
-  
-  const walk = startX - x;
-  
-  /* só arrasta se movimento for maior */
-  if (Math.abs(walk) > 10) {
-    
-    slider.scrollLeft = scrollLeft + walk;
-    
-  }
-  
-}, { passive: true });
-
-slider.addEventListener("touchend", () => {
-  
-  isDragging = false;
-  
-});
-
-/* DESKTOP */
-
-let mouseDown = false;
+/* =========================
+   PC
+========================= */
 
 slider.addEventListener("mousedown", (e) => {
-  
-  mouseDown = true;
-  
-  startX = e.pageX;
-  
+  isDown = true;
+  startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
-  
-});
-
-slider.addEventListener("mouseup", () => {
-  
-  mouseDown = false;
-  
 });
 
 slider.addEventListener("mouseleave", () => {
-  
-  mouseDown = false;
-  
+  isDown = false;
+});
+
+slider.addEventListener("mouseup", () => {
+  isDown = false;
 });
 
 slider.addEventListener("mousemove", (e) => {
-  
-  if (!mouseDown) return;
-  
+
+  if (!isDown) return;
+
   e.preventDefault();
-  
-  const x = e.pageX;
-  
-  const walk = startX - x;
-  
-  slider.scrollLeft = scrollLeft + walk;
-  
+
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+});
+
+/* =========================
+   CELULAR TOUCH
+========================= */
+
+slider.addEventListener("touchstart", (e) => {
+
+  startX = e.touches[0].pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+
+});
+
+slider.addEventListener("touchmove", (e) => {
+
+  const x = e.touches[0].pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
 });
 
 </script>
