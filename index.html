@@ -448,10 +448,14 @@
 /* FOTO */
 
 .cyber-banner img {
+  
   width: 100%;
   height: 100%;
+  
   object-fit: fill;
+  
   transition: 0.5s;
+  
   transform: scale(1.02);
 }
 
@@ -595,8 +599,6 @@
   border-radius:18px;
 
   cursor:pointer;
-
-  touch-action: manipulation;
 
   background:linear-gradient(
     145deg,
@@ -2393,31 +2395,27 @@ body{
    FILTROS SLIDE (ARRASTAR)
 ========================= */
 
-.filters-wrapper{
-  position:relative;
-  width:100%;
-  margin-bottom:35px;
-  overflow:hidden;
-}
-
-.filters-container{
-  display:flex;
-  gap:16px;
-
-  overflow-x:auto;
-  overflow-y:hidden;
-
-  padding:10px 5px;
-
-  scroll-behavior:smooth;
-
-  cursor:grab;
-
-  user-select:none;
-
+.filters-container {
+  display: flex;
+  gap: 16px;
+  
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  padding: 10px 5px;
+  
+  scroll-behavior: smooth;
+  
+  cursor: grab;
+  
+  user-select: none;
+  
   -webkit-overflow-scrolling: touch;
-
-  scrollbar-width:none;
+  
+  scrollbar-width: none;
+  
+  touch-action: pan-x;
+}
 }
 
 .filters-container::-webkit-scrollbar{
@@ -2597,84 +2595,43 @@ header {
 </div>
 
 <script>
-
-const slider = document.getElementById("filtersContainer");
-
-let isDown = false;
-let startX;
-let scrollLeft;
-let moved = false;
-
-/* PC */
-
-slider.addEventListener("mousedown", (e) => {
-
-  isDown = true;
-  moved = false;
-
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-
-});
-
-slider.addEventListener("mouseleave", () => {
-  isDown = false;
-});
-
-slider.addEventListener("mouseup", () => {
-  isDown = false;
-});
-
-slider.addEventListener("mousemove", (e) => {
-
-  if (!isDown) return;
-
-  e.preventDefault();
-
-  moved = true;
-
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 1.5;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-});
-
-/* CELULAR */
-
-slider.addEventListener("touchstart", (e) => {
-
-  moved = false;
-
-  startX = e.touches[0].pageX;
-  scrollLeft = slider.scrollLeft;
-
-}, { passive: true });
-
-slider.addEventListener("touchmove", (e) => {
-
-  moved = true;
-
-  const x = e.touches[0].pageX;
-  const walk = (x - startX) * 1.5;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-}, { passive: true });
-
-/* LIBERA CLIQUE DOS BOTÕES */
-
-document.querySelectorAll(".recent-btn").forEach(btn => {
-
-  btn.addEventListener("touchend", function(e){
-
-    if(!moved){
-      this.click();
-    }
-
+  const slider = document.getElementById("filtersContainer");
+  
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  
+  // quando clica
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("active");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
   });
-
-});
+  
+  // quando solta
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+  
+  // quando sai da área
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+  
+  // quando move o mouse
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    
+    slider.scrollLeft = scrollLeft - walk;
+  });
+</script>
 
 </script>
 
@@ -2847,6 +2804,85 @@ document.querySelectorAll(".recent-btn").forEach(btn => {
 }
 
 </style>
+
+<script>
+
+const slider = document.getElementById("filtersContainer");
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+/* =========================
+   MOUSE (PC)
+========================= */
+
+slider.addEventListener("mousedown", (e) => {
+
+  isDown = true;
+
+  startX = e.pageX - slider.offsetLeft;
+
+  scrollLeft = slider.scrollLeft;
+
+});
+
+slider.addEventListener("mouseleave", () => {
+
+  isDown = false;
+
+});
+
+slider.addEventListener("mouseup", () => {
+
+  isDown = false;
+
+});
+
+slider.addEventListener("mousemove", (e) => {
+
+  if (!isDown) return;
+
+  e.preventDefault();
+
+  const x = e.pageX - slider.offsetLeft;
+
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+});
+
+
+/* =========================
+   TOUCH (CELULAR)
+========================= */
+
+slider.addEventListener("touchstart", (e) => {
+
+  startX = e.touches[0].pageX;
+
+  scrollLeft = slider.scrollLeft;
+
+});
+
+slider.addEventListener("touchmove", (e) => {
+
+  const x = e.touches[0].pageX;
+
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+});
+
+slider.addEventListener("touchend", () => {
+
+  isDown = false;
+
+});
+
+</script>
 
 </body>
 </html>
