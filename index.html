@@ -2595,8 +2595,54 @@ header {
 const slider = document.getElementById("filtersContainer");
 
 let isDragging = false;
+
 let startX = 0;
+
 let scrollLeft = 0;
+
+let moved = false;
+
+/* =========================
+   TOUCH CELULAR
+========================= */
+
+slider.addEventListener("touchstart", (e) => {
+
+  isDragging = true;
+
+  moved = false;
+
+  startX = e.touches[0].pageX;
+
+  scrollLeft = slider.scrollLeft;
+
+}, { passive:true });
+
+slider.addEventListener("touchmove", (e) => {
+
+  if (!isDragging) return;
+
+  const x = e.touches[0].pageX;
+
+  const walk = x - startX;
+
+  /* se moveu muito vira arrasto */
+  if (Math.abs(walk) > 10) {
+
+    moved = true;
+
+    slider.scrollLeft = scrollLeft - walk;
+
+  }
+
+}, { passive:true });
+
+slider.addEventListener("touchend", () => {
+
+  isDragging = false;
+
+});
+
 
 /* =========================
    PC
@@ -2606,9 +2652,29 @@ slider.addEventListener("mousedown", (e) => {
 
   isDragging = true;
 
+  moved = false;
+
   startX = e.pageX;
 
   scrollLeft = slider.scrollLeft;
+
+});
+
+slider.addEventListener("mousemove", (e) => {
+
+  if (!isDragging) return;
+
+  e.preventDefault();
+
+  const walk = e.pageX - startX;
+
+  if (Math.abs(walk) > 10) {
+
+    moved = true;
+
+    slider.scrollLeft = scrollLeft - walk;
+
+  }
 
 });
 
@@ -2619,49 +2685,6 @@ slider.addEventListener("mouseup", () => {
 });
 
 slider.addEventListener("mouseleave", () => {
-
-  isDragging = false;
-
-});
-
-slider.addEventListener("mousemove", (e) => {
-
-  if (!isDragging) return;
-
-  e.preventDefault();
-
-  const walk = (e.pageX - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-});
-
-
-/* =========================
-   TOUCH CELULAR
-========================= */
-
-slider.addEventListener("touchstart", (e) => {
-
-  isDragging = true;
-
-  startX = e.touches[0].pageX;
-
-  scrollLeft = slider.scrollLeft;
-
-}, { passive: true });
-
-slider.addEventListener("touchmove", (e) => {
-
-  if (!isDragging) return;
-
-  const walk = (e.touches[0].pageX - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-}, { passive: true });
-
-slider.addEventListener("touchend", () => {
 
   isDragging = false;
 
