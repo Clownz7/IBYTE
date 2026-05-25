@@ -601,6 +601,8 @@
 
   cursor:pointer;
 
+  touch-action: manipulation;
+
   background:linear-gradient(
     145deg,
     rgba(0,255,255,0.08),
@@ -841,7 +843,27 @@ function fecharPopup() {
 /* FAVORITAR */
 
 function toggleFavorito(botao) {
+  
   botao.classList.toggle("active");
+  
+  let favoritos = [];
+  
+  let botoes =
+    document.querySelectorAll(".favorite-btn");
+  
+  botoes.forEach(function(btn, index) {
+    
+    if (btn.classList.contains("active")) {
+      favoritos.push(index);
+    }
+    
+  });
+  
+  localStorage.setItem(
+    "favoritos",
+    JSON.stringify(favoritos)
+  );
+  
 }
 
 /* FAVORITOS */
@@ -869,31 +891,29 @@ function mostrarFavoritos() {
 /* RECÉM ADICIONADOS */
 
 function mostrarRecentes() {
-
-  let jogos =
-    document.querySelectorAll(".game-card");
-
+  
+  let jogos = document.querySelectorAll(".game-card");
+  
+  // Esconde todos
   jogos.forEach(function(jogo) {
-
     jogo.style.display = "none";
-
   });
-
-  for (
-    let i = jogos.length - 1;
-    i >= jogos.length - 4;
-    i--
-  ) {
-
-    if (jogos[i]) {
-
-      let hidden =
-      jogos[i].getAttribute("data-hidden");
-
-      if(hidden !== "true"){
-
-        jogos[i].style.display = "flex";
-
+  
+  // Pega os 4 últimos visíveis
+  let contador = 0;
+  
+  for (let i = jogos.length - 1; i >= 0; i--) {
+    
+    let hidden = jogos[i].getAttribute("data-hidden");
+    
+    if (hidden !== "true") {
+      
+      jogos[i].style.display = "flex";
+      
+      contador++;
+      
+      if (contador === 4) {
+        break;
       }
 
     }
@@ -1107,7 +1127,7 @@ function mostrarHentai() {
   
   jogos.forEach(function(jogo) {
     
-    if (jogo.getAttribute("data-category") === "Hentai") {
+    if (jogo.getAttribute("data-category") === "hentai") {
 
       jogo.style.display = "flex";
 
@@ -1700,6 +1720,118 @@ mudar o destino do planeta.</p>
     </div>
   </div>
 
+<div class="game-card" data-category="hentai">
+    <img src="https://i.postimg.cc/7Y4hJNyb/capsule-616x353.jpg">
+
+<div class="game-content">
+      <h3>SEX WITH HITLER PC</h3>
+      <p>Jogo adulto de ação e tiro que mistura humor sombrio, combate intenso e uma versão alternativa da Segunda Guerra Mundial. O jogador enfrenta criaturas bizarras e inimigos nazistas em cenários caóticos enquanto desbloqueia novos conteúdos ao longo da campanha.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1_gyKDzJOQkTYl95m3HpVwop_C0S_5LIz/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="corrida">
+    <img src="https://i.postimg.cc/bN46Rd3T/6c380aa0e272c6b12a54d53a6d1d46c410a406ce3f51c7e3cdb7b877b16f10ee.avif">
+
+<div class="game-content">
+      <h3>FAST AND FURIOUS SPY RACES PC</h3>
+      <p>Jogo de corrida inspirado na série animada Fast & Furious: Spy Racers, onde os jogadores participam de missões secretas, perseguições intensas e corridas cheias de adrenalina. Assuma o controle de carros velozes, utilize gadgets especiais e enfrente rivais perigosos em cenários urbanos e pistas eletrizantes ao redor do mundo.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1W3WIQusNed9jlBa-IqtNuDXek_7nrtyf/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="hentai">
+    <img src="https://i.postimg.cc/VNvJVzf8/header.jpg">
+
+<div class="game-content">
+      <h3>SEX & BLOOD VAMPIRES PC</h3>
+      <p>Jogo de terror e ação com temática vampiresca, onde criaturas sombrias dominam a noite em um mundo repleto de sangue, mistério e batalhas intensas. Enfrente vampiros poderosos, explore ambientes obscuros e sobreviva a confrontos brutais enquanto desvenda segredos ocultos nas trevas.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1n9eH6d_kxBqOQ06up3F8av4IIGtUx2jb/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/5tb3YYSk/0b3adb91ef9ddf5bb2c7e09a9ff3b69600f40b048220975c9f5f29523ba5f2eb.avif">
+
+<div class="game-content">
+      <h3>SOUTH PARK SNOW DAW PC</h3>
+      <p>Jogo de ação e aventura inspirado no universo de South Park, onde uma enorme tempestade de neve transforma a cidade em um verdadeiro caos. Junte-se a Cartman, Stan, Kyle e Kenny em batalhas cooperativas,</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1jcU4DZ23jRifn86paIs0Q2z5j82tUFxZ/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="anime">
+    <img src="https://i.postimg.cc/J7kPFL0F/9045ed5b3a7fed4a41c27994d27b7c029da1fb5bce0b8bc69a195d24c9718028.avif">
+
+<div class="game-content">
+      <h3>TALES OF ARISE PC</h3>
+      <p>Em um mundo dividido entre opressores e escravos, dois povos vivem separados pela dor e pela guerra. Acompanhe Alphen e Shionne em uma jornada épica repleta de batalhas intensas, poderes misteriosos e descobertas emocionantes enquanto lutam para libertar seus mundos e mudar o destino de todos ao seu redor.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1i4BT3TjtMnFSqllyN9sgVG6V1JpwoTzP/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/28h1BH6V/nqy-AJz-SXrom-WZPf7Sz-Ci-Dt-Zh.jpg">
+
+<div class="game-content">
+      <h3>WARHAMMER 40.000 SPACE MARINE 2 PC</h3>
+      <p>No sombrio universo de Warhammer 40.000, a humanidade vive em guerra eterna contra ameaças alienígenas e forças do caos.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1ypmVUNHhDwSXj6asvy2L5_Ip1bSYP7rG/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card" data-category="acao">
+    <img src="https://i.postimg.cc/vBnsSNC5/maxresdefault-1-1.jpg">
+
+<div class="game-content">
+      <h3>THE LAST OF US PART I PC</h3>
+      <p>Em um mundo devastado por uma infecção mortal que transformou grande parte da humanidade em criaturas violentas, Joel, um sobrevivente marcado pela perda e pela brutalidade do novo mundo.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1Px4Q9giXADIl4vvqBg72uhZaiPsmO_nH/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
 <div class="game-card jogo-web"
      data-category="web"
      data-hidden="true">
@@ -2088,15 +2220,34 @@ function fazerLogin(){
   alert("Login realizado com sucesso!");
 }
 
-window.onload = function(){
-
-  let usuarioSalvo = localStorage.getItem("ibyteUser");
-
-  if(usuarioSalvo){
+window.onload = function() {
+  
+  let usuarioSalvo =
+    localStorage.getItem("ibyteUser");
+  
+  if (usuarioSalvo) {
+    
     document.getElementById("usuarioLogado").innerHTML =
-    "👤 " + usuarioSalvo;
+      "👤 " + usuarioSalvo;
+    
   }
-
+  
+  // CARREGAR FAVORITOS
+  
+  let favoritosSalvos =
+    JSON.parse(localStorage.getItem("favoritos")) || [];
+  
+  let botoes =
+    document.querySelectorAll(".favorite-btn");
+  
+  favoritosSalvos.forEach(function(index) {
+    
+    if (botoes[index]) {
+      botoes[index].classList.add("active");
+    }
+    
+  });
+  
 }
 
 </script>
@@ -2451,42 +2602,57 @@ header {
 </div>
 
 <script>
-  const slider = document.getElementById("filtersContainer");
-  
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-  
-  // quando clica
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("active");
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-  
-  // quando solta
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-  
-  // quando sai da área
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-  
-  // quando move o mouse
-  slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2;
-    
-    slider.scrollLeft = scrollLeft - walk;
-  });
+
+const slider = document.getElementById("filtersContainer");
+
+let isDragging = false;
+let startX;
+let scrollLeft;
+
+// PC
+slider.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  startX = e.pageX;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener("mouseleave", () => {
+  isDragging = false;
+});
+
+slider.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+slider.addEventListener("mousemove", (e) => {
+
+  if (!isDragging) return;
+
+  e.preventDefault();
+
+  const walk = (e.pageX - startX) * 1.5;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+});
+
+// CELULAR
+slider.addEventListener("touchstart", (e) => {
+
+  startX = e.touches[0].pageX;
+
+  scrollLeft = slider.scrollLeft;
+
+}, { passive:true });
+
+slider.addEventListener("touchmove", (e) => {
+
+  const walk = (e.touches[0].pageX - startX) * 1.5;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+}, { passive:true });
+
 </script>
 
 </script>
