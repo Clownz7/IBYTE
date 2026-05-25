@@ -455,8 +455,9 @@
   object-fit: fill;
   
   transition: 0.5s;
-  
-  transform: scale(1.02);
+}
+
+  transform:scale(1.02);
 }
 
 /* EFEITO ESCURO */
@@ -2395,27 +2396,31 @@ body{
    FILTROS SLIDE (ARRASTAR)
 ========================= */
 
-.filters-container {
-  display: flex;
-  gap: 16px;
-  
-  overflow-x: auto;
-  overflow-y: hidden;
-  
-  padding: 10px 5px;
-  
-  scroll-behavior: smooth;
-  
-  cursor: grab;
-  
-  user-select: none;
-  
-  -webkit-overflow-scrolling: touch;
-  
-  scrollbar-width: none;
-  
-  touch-action: pan-x;
+.filters-wrapper{
+  position:relative;
+  width:100%;
+  margin-bottom:35px;
+  overflow:hidden;
 }
+
+.filters-container{
+  display:flex;
+  gap:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding:10px 5px;
+
+  scroll-behavior:smooth;
+
+  cursor:grab;
+
+  user-select:none;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width:none;
 }
 
 .filters-container::-webkit-scrollbar{
@@ -2585,52 +2590,83 @@ header {
 
 </style>
 
-
-<div id="popupInfantil" class="popup">
-  <div class="popup-box">
-    <h2>⚠️ Aviso</h2>
-    <p id="popupText">Nenhum jogo encontrado.</p>
-    <button onclick="fecharPopup()">OK</button>
-  </div>
-</div>
-
 <script>
-  const slider = document.getElementById("filtersContainer");
-  
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-  
-  // quando clica
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("active");
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-  
-  // quando solta
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-  
-  // quando sai da área
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-  
-  // quando move o mouse
-  slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2;
-    
-    slider.scrollLeft = scrollLeft - walk;
-  });
+
+const slider = document.getElementById("filtersContainer");
+
+let isDragging = false;
+let startX = 0;
+let scrollLeft = 0;
+
+/* =========================
+   PC
+========================= */
+
+slider.addEventListener("mousedown", (e) => {
+
+  isDragging = true;
+
+  startX = e.pageX;
+
+  scrollLeft = slider.scrollLeft;
+
+});
+
+slider.addEventListener("mouseup", () => {
+
+  isDragging = false;
+
+});
+
+slider.addEventListener("mouseleave", () => {
+
+  isDragging = false;
+
+});
+
+slider.addEventListener("mousemove", (e) => {
+
+  if (!isDragging) return;
+
+  e.preventDefault();
+
+  const walk = (e.pageX - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+});
+
+
+/* =========================
+   TOUCH CELULAR
+========================= */
+
+slider.addEventListener("touchstart", (e) => {
+
+  isDragging = true;
+
+  startX = e.touches[0].pageX;
+
+  scrollLeft = slider.scrollLeft;
+
+}, { passive: true });
+
+slider.addEventListener("touchmove", (e) => {
+
+  if (!isDragging) return;
+
+  const walk = (e.touches[0].pageX - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
+
+}, { passive: true });
+
+slider.addEventListener("touchend", () => {
+
+  isDragging = false;
+
+});
+
 </script>
 
 </script>
@@ -2804,85 +2840,6 @@ header {
 }
 
 </style>
-
-<script>
-
-const slider = document.getElementById("filtersContainer");
-
-let isDown = false;
-let startX;
-let scrollLeft;
-
-/* =========================
-   MOUSE (PC)
-========================= */
-
-slider.addEventListener("mousedown", (e) => {
-
-  isDown = true;
-
-  startX = e.pageX - slider.offsetLeft;
-
-  scrollLeft = slider.scrollLeft;
-
-});
-
-slider.addEventListener("mouseleave", () => {
-
-  isDown = false;
-
-});
-
-slider.addEventListener("mouseup", () => {
-
-  isDown = false;
-
-});
-
-slider.addEventListener("mousemove", (e) => {
-
-  if (!isDown) return;
-
-  e.preventDefault();
-
-  const x = e.pageX - slider.offsetLeft;
-
-  const walk = (x - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-});
-
-
-/* =========================
-   TOUCH (CELULAR)
-========================= */
-
-slider.addEventListener("touchstart", (e) => {
-
-  startX = e.touches[0].pageX;
-
-  scrollLeft = slider.scrollLeft;
-
-});
-
-slider.addEventListener("touchmove", (e) => {
-
-  const x = e.touches[0].pageX;
-
-  const walk = (x - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
-});
-
-slider.addEventListener("touchend", () => {
-
-  isDown = false;
-
-});
-
-</script>
 
 </body>
 </html>
