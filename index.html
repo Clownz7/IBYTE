@@ -566,36 +566,50 @@
    FILTROS CYBERPUNK
 ========================= */
 
-.filters-wrapper{
-  position:relative;
-  width:100%;
-  overflow:hidden;
+.filters-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.filters-container{
-  display:flex;
-  gap:16px;
-
-  overflow-x:auto;
-  overflow-y:hidden;
-
-  padding:10px 5px;
-
-  cursor:grab;
-  user-select:none;
-
-  scrollbar-width:none;
+.filters-container {
+  display: flex;
+  gap: 16px;
+  
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  padding: 10px 5px;
+  
+  cursor: grab;
+  user-select: none;
+  
+  scrollbar-width: none;
+  
+  /* MOBILE TOUCH */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
 }
 
-.filters-container::-webkit-scrollbar{
-  display:none;
+.filters-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* BOTÕES */
+
+.recent-btn {
+  
+  touch-action: manipulation;
+  
 }
 
 /* BOTÕES */
 .recent-btn{
+
   flex:none;
 
   padding:14px 28px;
+
   border:none;
   border-radius:18px;
 
@@ -612,6 +626,11 @@
   font-weight:600;
 
   border:1px solid rgba(0,255,255,0.25);
+
+  /* CORREÇÃO TOUCH MOBILE */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
 }
 
 /* 🔥 SETA */
@@ -2392,153 +2411,6 @@ body{
   overflow-x:hidden;
 }
 
-/* =========================
-   FILTROS SLIDE (ARRASTAR)
-========================= */
-
-.filters-wrapper{
-  position:relative;
-  width:100%;
-  margin-bottom:35px;
-  overflow:hidden;
-}
-
-.filters-container{
-  display:flex;
-  gap:16px;
-
-  overflow-x:auto;
-  overflow-y:hidden;
-
-  padding:10px 5px;
-
-  scroll-behavior:smooth;
-
-  cursor:grab;
-
-  user-select:none;
-
-  -webkit-overflow-scrolling: touch;
-
-  scrollbar-width:none;
-}
-
-.filters-container::-webkit-scrollbar{
-  display:none;
-}
-
-.filters-container:active{
-  cursor:grabbing;
-}
-
-/* BOTÕES */
-
-.recent-btn{
-  flex:none;
-
-  padding:14px 28px;
-
-  border:none;
-  outline:none;
-
-  border-radius:18px;
-
-  cursor:pointer;
-
-  background:linear-gradient(
-    145deg,
-    rgba(0,255,255,0.08),
-    rgba(255,0,255,0.08)
-  );
-
-  color:white;
-
-  font-size:15px;
-  font-weight:600;
-
-  border:1px solid rgba(0,255,255,0.25);
-
-  transition:0.3s;
-}
-
-.recent-btn:hover{
-  transform:scale(1.05);
-  border:1px solid #00ffff;
-}
-
-/* =========================
-   POPUP
-========================= */
-
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999;
-}
-
-.popup-box {
-  background: #111;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  width: 300px;
-}
-
-.popup-box button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #00ffff, #ff00ff);
-  color: white;
-  cursor: pointer;
-}
-
-.arrow-next{
-  flex:none;
-
-  width:55px;
-  height:55px;
-
-  border:none;
-  border-radius:18px;
-
-  cursor:pointer;
-
-  font-size:30px;
-  font-weight:bold;
-
-  color:white;
-
-  background:linear-gradient(
-    145deg,
-    rgba(0,255,255,0.08),
-    rgba(255,0,255,0.08)
-  );
-
-  border:1px solid rgba(0,255,255,0.25);
-
-  backdrop-filter:blur(15px);
-
-  box-shadow:
-    0 0 15px rgba(0,255,255,0.15),
-    0 0 25px rgba(255,0,255,0.08);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-
-
-<style>
-
 header {
   position: fixed;
   top: 0;
@@ -2594,48 +2466,83 @@ header {
 
 const slider = document.getElementById("filtersContainer");
 
-let isDown = false;
-let startX;
-let scrollLeft;
+let isDragging = false;
+let startX = 0;
+let scrollLeft = 0;
 
-/* =========================
-   PC ONLY
-========================= */
+/* TOUCH MOBILE */
 
-slider.addEventListener("mousedown", (e) => {
-
-  isDown = true;
-
-  startX = e.pageX - slider.offsetLeft;
-
+slider.addEventListener("touchstart", (e) => {
+  
+  isDragging = true;
+  
+  startX = e.touches[0].pageX;
+  
   scrollLeft = slider.scrollLeft;
+  
+}, { passive: true });
 
+slider.addEventListener("touchmove", (e) => {
+  
+  if (!isDragging) return;
+  
+  const x = e.touches[0].pageX;
+  
+  const walk = startX - x;
+  
+  /* só arrasta se movimento for maior */
+  if (Math.abs(walk) > 10) {
+    
+    slider.scrollLeft = scrollLeft + walk;
+    
+  }
+  
+}, { passive: true });
+
+slider.addEventListener("touchend", () => {
+  
+  isDragging = false;
+  
 });
 
-slider.addEventListener("mouseleave", () => {
+/* DESKTOP */
 
-  isDown = false;
+let mouseDown = false;
 
+slider.addEventListener("mousedown", (e) => {
+  
+  mouseDown = true;
+  
+  startX = e.pageX;
+  
+  scrollLeft = slider.scrollLeft;
+  
 });
 
 slider.addEventListener("mouseup", () => {
+  
+  mouseDown = false;
+  
+});
 
-  isDown = false;
-
+slider.addEventListener("mouseleave", () => {
+  
+  mouseDown = false;
+  
 });
 
 slider.addEventListener("mousemove", (e) => {
-
-  if (!isDown) return;
-
+  
+  if (!mouseDown) return;
+  
   e.preventDefault();
-
-  const x = e.pageX - slider.offsetLeft;
-
-  const walk = (x - startX) * 2;
-
-  slider.scrollLeft = scrollLeft - walk;
-
+  
+  const x = e.pageX;
+  
+  const walk = startX - x;
+  
+  slider.scrollLeft = scrollLeft + walk;
+  
 });
 
 </script>
