@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>IBYTE - PC Games Store</title>
+  <title>NEBULOSO - PC Games Store</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#b90707">
 
@@ -65,23 +65,40 @@
 }
 
     .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:30px;
-      font-family:'Orbitron',sans-serif;
-      color:#00ffff;
-      text-shadow:0 0 15px #00ffff;
-      font-weight:bold;
-    }
+  display:flex;
+  align-items:center;
+  gap:10px;
 
-    .logo img{
-      width:50px;
-      height:50px;
-      border-radius:12px;
-      object-fit:cover;
-      box-shadow:0 0 15px #00ffff;
-    }
+  font-size:30px;
+  font-family:'Orbitron',sans-serif;
+  font-weight:bold;
+
+  background:linear-gradient(
+    90deg,
+    #00ffff,
+    #00d9ff,
+    #ff00ff
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 0 10px rgba(0,255,255,0.7),
+    0 0 20px rgba(255,0,255,0.5),
+    0 0 35px rgba(0,255,255,0.4);
+}
+
+    .logo img {
+  width: 50px;
+  height: 50px;
+  
+  border-radius: 50%;
+  
+  object-fit: cover;
+  
+  box-shadow: 0 0 15px #00ffff;
+}
 
     nav{
       display:flex;
@@ -122,12 +139,28 @@
     }
 
     .hero-content h1{
-      font-size:70px;
-      font-family:'Orbitron',sans-serif;
-      color:#00ffff;
-      text-shadow:0 0 20px #00ffff;
-      margin-bottom:20px;
-    }
+
+  font-size:70px;
+  font-family:'Orbitron',sans-serif;
+  font-weight:bold;
+
+  background:linear-gradient(
+    90deg,
+    #00ffff,
+    #00d9ff,
+    #ff00ff
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 0 15px rgba(0,255,255,0.7),
+    0 0 25px rgba(255,0,255,0.5),
+    0 0 45px rgba(0,255,255,0.4);
+
+  margin-bottom:20px;
+}
 
     .hero-content p{
       font-size:20px;
@@ -170,13 +203,29 @@
     }
 
     .section-title{
-      font-size:42px;
-      font-family:'Orbitron',sans-serif;
-      color:#00ffff;
-      margin-bottom:60px;
-      text-align:center;
-      text-shadow:0 0 10px #00ffff;
-    }
+
+  font-size:42px;
+  font-family:'Orbitron',sans-serif;
+  font-weight:bold;
+
+  margin-bottom:60px;
+  text-align:center;
+
+  background:linear-gradient(
+    90deg,
+    #00ffff,
+    #00d9ff,
+    #ff00ff
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 0 15px rgba(0,255,255,0.7),
+    0 0 25px rgba(255,0,255,0.5),
+    0 0 40px rgba(0,255,255,0.4);
+}
 
     .games-grid{
       display:grid;
@@ -361,8 +410,8 @@
 <header class="header">
   
   <div class="logo">
-    <img src="https://i.postimg.cc/ry7PZY2G/file-0000000088fc720e8876c84e823e5532.png">
-    IBYTE
+    <img src="https://i.postimg.cc/MTSXstBM/90e48080-29de-4e1e-aa5f-51d68f4377ee.png">
+    NEBULOSO
   </div>
   
   <nav>
@@ -382,7 +431,7 @@
 
   <div class="hero-content">
 
-    <h1>IBYTE GAMES</h1>
+    <h1>NEBULOSO</h1>
 
     <p>
       Baixe os melhores jogos de PC em um ambiente totalmente cyberpunk.
@@ -1560,7 +1609,7 @@ function pesquisarJogos(){
     </div>
   </div>
 
-  <div class="game-card" data-category="luta">
+  <div class="game-card" data-category="anime">
     <img src="https://i.postimg.cc/vBGPp07z/header.webp">
 
     <div class="game-content">
@@ -1730,6 +1779,22 @@ function pesquisarJogos(){
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1ftBDqzVh0ByeKoM4hSd3OJXyn5sjWq6n/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card recent" data-category="mundoaberto">
+    <img src="https://i.postimg.cc/W4wLm7wt/images.jpg">
+
+    <div class="game-content">
+      <h3>GRAND THEFT AUTO SAN ANDREAS PC</h3>
+      <p>Explore três grandes cidades inspiradas na Califórnia e Nevada, participe de missões intensas, perseguições policiais, roubos, corridas e confrontos no submundo do crime. O jogo mistura ação, mundo aberto e uma história marcante cheia de traições, poder e sobrevivência.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1j1MyMAV_dnqjrnoZ63AWfZ3w45sdlqb2/view?usp=drive_link"
            class="download-btn" target="_blank">Download</a>
 
         <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
@@ -2188,7 +2253,7 @@ function copiarPix(){
 </section>
 
 <footer id="contact">
-  <p>© 2026 IBYTE - Todos os direitos reservados</p>
+  <p>© 2026 NEBULOSO - Todos os direitos reservados</p>
 </footer>
 
 <!-- LOGIN MODAL -->
