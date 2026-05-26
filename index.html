@@ -2255,7 +2255,7 @@ function copiarPix(){
   <span class="logo-text">SOBRE NÓS</span>
 </button>
 
-<!-- RODAPÉ SOBRE NÓS -->
+<!-- SOBRE NÓS -->
 <div id="sobreBox" class="sobre-box">
 
   <h2 class="logo-text">Sobre Nós</h2>
@@ -2269,6 +2269,11 @@ function copiarPix(){
     Nosso objetivo é trazer uma experiência moderna, rápida e futurista
     para toda comunidade gamer.
   </p>
+
+  <!-- CANAL YOUTUBE -->
+  <a class="yt-btn" href="https://www.youtube.com/@MultiVersoRetro66" target="_blank">
+    📺 Nosso Canal no YouTube
+  </a>
 
 </div>
 
@@ -2301,7 +2306,7 @@ function copiarPix(){
 }
 
 .sobre-box.ativo{
-  max-height:400px;
+  max-height:500px;
   padding:30px 20px;
 }
 
@@ -2324,15 +2329,31 @@ function copiarPix(){
   margin-bottom:15px;
 }
 
+/* BOTÃO YOUTUBE */
+.yt-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 20px;
+  background:#ff0000;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.yt-btn:hover{
+  background:#cc0000;
+  box-shadow:0 0 15px rgba(255,0,0,0.6);
+}
+
 </style>
 
 <script>
-
 function toggleSobre(){
   document.getElementById("sobreBox")
   .classList.toggle("ativo");
 }
-
 </script>
 
 </section>
