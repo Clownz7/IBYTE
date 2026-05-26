@@ -531,6 +531,8 @@
 
 <button class="recent-btn" onclick="mostrarTodosJogos()">✦ TODOS OS JOGOS</button>
 
+<button class="recent-btn" onclick="mostrarAnime()">✦ ANIME</button>
+
 <button class="recent-btn" onclick="mostrarTerror()">✦ TERROR</button>
 
 <button class="recent-btn" onclick="mostrarMundoAberto()">✦ MUNDO ABERTO</button>
@@ -894,34 +896,27 @@ function mostrarFavoritos() {
 
 function mostrarRecentes() {
   
-  let jogos = document.querySelectorAll(".game-card");
+  let jogos =
+    document.querySelectorAll(".game-card");
   
-  // Esconde todos
   jogos.forEach(function(jogo) {
     jogo.style.display = "none";
   });
   
-  // Pega os 4 últimos visíveis
-  let contador = 0;
+  let recentes =
+    document.querySelectorAll(".game-card.recent");
   
-  for (let i = jogos.length - 1; i >= 0; i--) {
+  recentes.forEach(function(jogo) {
     
-    let hidden = jogos[i].getAttribute("data-hidden");
+    let hidden =
+      jogo.getAttribute("data-hidden");
     
     if (hidden !== "true") {
-      
-      jogos[i].style.display = "flex";
-      
-      contador++;
-      
-      if (contador === 4) {
-        break;
-      }
-
+      jogo.style.display = "flex";
     }
-
-  }
-
+    
+  });
+  
 }
 
 /* TODOS */
@@ -1451,7 +1446,7 @@ function pesquisarJogos(){
     </div>
   </div>
 
-  <div class="game-card" data-category="">
+  <div class="game-card recent" data-category="mundoaberto">
     <img src="https://i.postimg.cc/yYggKrPp/e2adb6927bab58c79bd92f6f9e130bf5913d2edd2315887a.avif">
 
     <div class="game-content">
@@ -1581,7 +1576,7 @@ function pesquisarJogos(){
     </div>
   </div>
 
-<div class="game-card" data-category="anime">
+<div class="game-card recent" data-category="anime">
     <img src="https://i.postimg.cc/kXxWbg6d/capsule-616x353-(1).jpg">
 
     <div class="game-content">
@@ -1597,7 +1592,7 @@ function pesquisarJogos(){
     </div>
   </div>
 
-<div class="game-card" data-category="anime">
+<div class="game-card recent" data-category="acao">
     <img src="https://i.postimg.cc/Bv1SjXbQ/14b337d544fcaebfb96358f2985404177c6bbe22bda20dcd.avif">
 
     <div class="game-content">
