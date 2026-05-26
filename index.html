@@ -2250,6 +2250,91 @@ function copiarPix(){
 
 </style>
 
+<!-- BOTÃO SOBRE NÓS -->
+<button class="btn-sobre" onclick="toggleSobre()">
+  <span class="logo-text">SOBRE NÓS</span>
+</button>
+
+<!-- RODAPÉ SOBRE NÓS -->
+<div id="sobreBox" class="sobre-box">
+
+  <h2 class="logo-text">Sobre Nós</h2>
+
+  <p>
+    A <strong class="logo-text">NEBULOSO</strong> é uma plataforma criada para gamers que procuram
+    jogos de PC, emuladores, launchers e conteúdos exclusivos.
+  </p>
+
+  <p>
+    Nosso objetivo é trazer uma experiência moderna, rápida e futurista
+    para toda comunidade gamer.
+  </p>
+
+</div>
+
+<style>
+
+.btn-sobre{
+  width:100%;
+  padding:15px;
+  background:#0a0a0a;
+  border:none;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+  border-top:1px solid rgba(0,255,255,0.2);
+}
+
+.btn-sobre:hover{
+  background:#111;
+  box-shadow:0 0 15px #00ffff;
+}
+
+.sobre-box{
+  max-height:0;
+  overflow:hidden;
+  background:#0a0a0a;
+  transition:0.5s;
+  text-align:center;
+  padding:0 20px;
+}
+
+.sobre-box.ativo{
+  max-height:400px;
+  padding:30px 20px;
+}
+
+.logo-text{
+  background:linear-gradient(90deg,#00ffff,#00aaff,#8a2be2);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:bold;
+  text-shadow:0 0 12px rgba(0,255,255,0.5);
+}
+
+.sobre-box h2{
+  margin-bottom:20px;
+  font-size:32px;
+}
+
+.sobre-box p{
+  color:#ccc;
+  line-height:1.7;
+  margin-bottom:15px;
+}
+
+</style>
+
+<script>
+
+function toggleSobre(){
+  document.getElementById("sobreBox")
+  .classList.toggle("ativo");
+}
+
+</script>
+
 </section>
 
 <footer id="contact">
