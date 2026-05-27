@@ -458,7 +458,7 @@
 <div class="cyber-banner">
 
   <!-- SUA FOTO -->
-  <img src="https://i.postimg.cc/WbQPf32D/Whats-App-Image-2026-05-21-at-14-59-12.jpg">
+  <img src="https://i.postimg.cc/d1fkmyYB/7ec2f98d-c40f-403e-be6e-93147506f6ba.png">
 
   <!-- OVERLAY -->
   <div class="cyber-overlay"></div>
@@ -948,19 +948,26 @@ function mostrarRecentes() {
   let jogos =
     document.querySelectorAll(".game-card");
   
+  // Esconde todos os jogos
   jogos.forEach(function(jogo) {
     jogo.style.display = "none";
   });
   
+  // Pega somente os jogos recentes
   let recentes =
-    document.querySelectorAll(".game-card.recent");
+    Array.from(document.querySelectorAll(".game-card.recent"));
   
-  recentes.forEach(function(jogo) {
+  // Remove os antigos e deixa apenas os 4 últimos
+  recentes.forEach(function(jogo, index) {
     
     let hidden =
       jogo.getAttribute("data-hidden");
     
-    if (hidden !== "true") {
+    // Mostra apenas os 4 últimos adicionados
+    if (
+      index >= recentes.length - 4 &&
+      hidden !== "true"
+    ) {
       jogo.style.display = "flex";
     }
     
@@ -1906,7 +1913,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>LIGHTNING RETURNS FINAL FANTASY XIII PC</h3>
-      <p>A história acompanha Lightning em um mundo chamado Nova Chrysalia.</p>
+      <p>A história acompanha uma guerreira escolhida para salvar um mundo que está prestes a acabar em apenas alguns dias. Em sua jornada, ela precisa enfrentar criaturas poderosas, ajudar diferentes pessoas e descobrir verdades escondidas enquanto busca salvar as almas da humanidade. Ao longo da aventura, a protagonista enfrenta conflitos emocionais, reencontra antigos aliados e luta contra o destino para decidir o futuro do mundo.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1rH6kSbFP7nDuKbhPBP-56WVjn7P6Dypo/view?usp=drive_link"
@@ -1922,7 +1929,7 @@ function pesquisarJogos(){
 
     <div class="game-content">
       <h3>MARVEL SPIDER MAN 2 PC</h3>
-      <p>Peter Parker e Miles Morales enfrentam novas ameaças em Nova York.</p>
+      <p>A história acompanha dois heróis que precisam proteger Nova York de novas ameaças enquanto tentam equilibrar suas vidas pessoais. Durante a jornada, eles enfrentam inimigos perigosos, batalhas intensas e uma misteriosa força simbionte que começa a mudar um dos protagonistas, colocando amizades e relacionamentos em risco. Ao mesmo tempo, ambos precisam superar desafios e escolhas difíceis para salvar a cidade e as pessoas que amam.</p>
 
       <div class="game-actions">
         <a href="https://drive.google.com/file/d/1APrUoWXx4Lp3TTyaSkcIJUMw74t7rxcW/view?usp=drive_link"
@@ -2013,6 +2020,38 @@ function pesquisarJogos(){
     </div>
   </div>
 
+<div class="game-card recent" data-category="acao">
+    <img src="https://i.postimg.cc/43pR1KhQ/capsule-616x353.jpg">
+
+    <div class="game-content">
+      <h3>SILENT HILL HOMECOMING PC</h3>
+      <p>O jogo mistura terror psicológico, monstros grotescos e muitos mistérios, trazendo uma atmosfera pesada e cheia de tensão. A história possui múltiplos finais, dependendo das escolhas feitas pelo jogador durante a campanha.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1Rmdd_s6O8LANE7RCdSmYe9ul2D8NypQx/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card recent" data-category="acao">
+    <img src="https://i.postimg.cc/vZW0q53L/EGS-Soulstice-Reply-Game-Studios-S1-2560x1440-dd33485a66a99704353c5ab09183612d.jpg">
+
+    <div class="game-content">
+      <h3>SOULSTICE PC</h3>
+      <p>O jogo se destaca pelo combate rápido e estiloso, onde o jogador controla as duas irmãs ao mesmo tempo, combinando ataques físicos e habilidades mágicas para criar combos devastadores.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1Ke-tx1MXIpNI-IeuJbD-AbvGR54Gxf5g/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
   <div class="game-card" data-category="acao">
     <img src="https://i.postimg.cc/5tb3YYSk/0b3adb91ef9ddf5bb2c7e09a9ff3b69600f40b048220975c9f5f29523ba5f2eb.avif">
 
@@ -2029,11 +2068,59 @@ function pesquisarJogos(){
     </div>
   </div>
 
+<div class="game-card recent" data-category="acao">
+    <img src="https://i.postimg.cc/gjHvyKYG/images.jpg">
+
+    <div class="game-content">
+      <h3>STAR WARS THE FORCE  UNLEASHED PC</h3>
+      <p>A história mostra o nascimento da Aliança Rebelde e apresenta batalhas épicas, planetas famosos da franquia e uma visão mais sombria e poderosa da Força.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/12n_irOdjYcgLocHPEruX7YLhc2Q2xfYb/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card recent" data-category="acao">
+    <img src="https://i.postimg.cc/V6Dtdk4v/sdkshwzbrz1rsnsi0zjr.jpg">
+
+    <div class="game-content">
+      <h3>STRANGER OF PARADISE FINAL FANTASY ORIGIN PC</h3>
+      <p>O jogo mistura ação frenética estilo soulslike com o sistema clássico de profissões (Jobs) da franquia Final Fantasy, permitindo usar diferentes armas, magias e estilos de combate. Além das lutas difíceis contra monstros e chefes gigantes.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1sU0r7fKHVo8J0-VHCNXg_mCePbT15sUo/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
+<div class="game-card recent" data-category="aventura">
+    <img src="https://i.postimg.cc/KvFYd25w/d8c81b018b2e579aa5c224e635cf5368266ef168c7828e9ae18ad9444158efc4.avif">
+
+    <div class="game-content">
+      <h3>STRAY PC</h3>
+      <p>A história acompanha um gato perdido que acaba separado de sua família após cair em uma misteriosa cidade subterrânea habitada por robôs.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1vBWig6TqyXhHmgXU-smgLOciZiat_8N0/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
   <div class="game-card" data-category="anime">
     <img src="https://i.postimg.cc/Vs2dJ0d7/7-1728078970.webp">
 
     <div class="game-content">
-      <h3>SWORD ART ONLINE FRACTURED DAYDREAM</h3>
+      <h3>SWORD ART ONLINE FRACTURED DAYDREAM PC</h3>
       <p>Combates rápidos em mundo virtual instável cheio de inimigos.</p>
 
       <div class="game-actions">
