@@ -3071,7 +3071,8 @@ window.onload = function() {
 
 }
 
-</script>
+
+<script>
 
 function abrirPagamento() {
   window.open(
@@ -3101,7 +3102,7 @@ function fazerLogin(){
   localStorage.setItem("ibyteUser", usuario);
 
   document.getElementById("usuarioLogado").innerHTML =
-  "👤 " + usuario;
+    "👤 " + usuario;
 
   fecharLogin();
 
@@ -3110,18 +3111,14 @@ function fazerLogin(){
 
 window.onload = function() {
   
-  let usuarioSalvo =
-    localStorage.getItem("ibyteUser");
+  let usuarioSalvo = localStorage.getItem("ibyteUser");
   
   if (usuarioSalvo) {
-    
     document.getElementById("usuarioLogado").innerHTML =
       "👤 " + usuarioSalvo;
-    
   }
   
   // CARREGAR FAVORITOS
-  
   let favoritosSalvos =
     JSON.parse(localStorage.getItem("favoritos")) || [];
   
@@ -3129,13 +3126,11 @@ window.onload = function() {
     document.querySelectorAll(".favorite-btn");
   
   favoritosSalvos.forEach(function(index) {
-    
     if (botoes[index]) {
       botoes[index].classList.add("active");
     }
-    
   });
-  
+
 }
 
 </script>
