@@ -2694,18 +2694,44 @@ function copiarPix(){
 
 </style>
 
-<script>
-function toggleSobre(){
-  document.getElementById("sobreBox")
-  .classList.toggle("ativo");
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<style>
+
+.google-btn{
+
+  width:100%;
+  height:45px;
+
+  border:none;
+  border-radius:12px;
+
+  background:white;
+  color:black;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:10px;
+
+  margin-top:10px;
+
 }
-</script>
 
-</section>
+.google-btn img{
+  width:22px;
+}
 
-<footer id="contact">
-  <p>© 2026 NEBULOSO - Todos os direitos reservados</p>
-</footer>
+</style>
 
 <!-- LOGIN MODAL -->
 
@@ -2713,21 +2739,339 @@ function toggleSobre(){
 
   <div class="login-box">
 
-    <h2>LOGIN IBYTE</h2>
+    <!-- LOGIN -->
 
-    <input type="text" id="usuario" placeholder="Usuário">
+    <div id="loginBox">
 
-    <input type="password" id="senha" placeholder="Senha">
+      <h2>ENTRAR</h2>
 
-    <button onclick="fazerLogin()">ENTRAR / CADASTRAR</button>
+      <input type="text"
+      id="usuario"
+      placeholder="Usuário">
 
-    <button class="close-btn" onclick="fecharLogin()">FECHAR</button>
+      <input type="password"
+      id="senha"
+      placeholder="Senha">
+
+      <button onclick="fazerLogin()">
+        ENTRAR
+      </button>
+
+      <!-- GOOGLE -->
+
+      <button class="google-btn"
+      onclick="loginGoogle()">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+
+        Entrar com Google
+
+      </button>
+
+      <button onclick="mostrarCadastro()">
+        CADASTRAR
+      </button>
+
+    </div>
+
+    <!-- CADASTRO -->
+
+    <div id="cadastroBox"
+    style="display:none;">
+
+      <h2>CRIAR CONTA</h2>
+
+      <input type="text"
+      id="novoUsuario"
+      placeholder="Novo usuário">
+
+      <input type="password"
+      id="novaSenha"
+      placeholder="Nova senha">
+
+      <button onclick="fazerCadastro()">
+        CRIAR CONTA
+      </button>
+
+      <button onclick="mostrarLogin()">
+        VOLTAR
+      </button>
+
+    </div>
+
+    <span class="fechar"
+    onclick="fecharLogin()">
+      ✖
+    </span>
 
   </div>
 
 </div>
 
 <script>
+
+// CONFIG FIREBASE
+
+const firebaseConfig = {
+
+  apiKey: "SUA_API_KEY",
+
+  authDomain: "SEU_PROJETO.firebaseapp.com",
+
+  projectId: "SEU_PROJETO",
+
+  appId: "SEU_APP_ID"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// PAGAMENTO
+
+function abrirPagamento() {
+
+  window.open(
+    "https://link.infinitepay.io/nolaggameplay/VC1D-ooRPGL1C7r-25,00",
+    "_blank"
+  );
+
+}
+
+// LOGIN
+
+function abrirLogin(){
+
+  document.getElementById(
+    "loginModal"
+  ).style.display = "flex";
+
+  document.getElementById(
+    "loginBox"
+  ).style.display = "block";
+
+  document.getElementById(
+    "cadastroBox"
+  ).style.display = "none";
+
+}
+
+function fecharLogin(){
+
+  document.getElementById(
+    "loginModal"
+  ).style.display = "none";
+
+}
+
+// TROCAR TELAS
+
+function mostrarCadastro(){
+
+  document.getElementById(
+    "loginBox"
+  ).style.display = "none";
+
+  document.getElementById(
+    "cadastroBox"
+  ).style.display = "block";
+
+}
+
+function mostrarLogin(){
+
+  document.getElementById(
+    "loginBox"
+  ).style.display = "block";
+
+  document.getElementById(
+    "cadastroBox"
+  ).style.display = "none";
+
+}
+
+// LOGIN NORMAL
+
+function fazerLogin(){
+
+  let usuario =
+    document.getElementById(
+      "usuario"
+    ).value;
+
+  let senha =
+    document.getElementById(
+      "senha"
+    ).value;
+
+  let usuarioSalvo =
+    localStorage.getItem(
+      "ibyteUsuario"
+    );
+
+  let senhaSalva =
+    localStorage.getItem(
+      "ibyteSenha"
+    );
+
+  if(usuario === "" || senha === ""){
+
+    alert("Preencha todos os campos!");
+    return;
+
+  }
+
+  if(usuario === usuarioSalvo &&
+     senha === senhaSalva){
+
+    localStorage.setItem(
+      "ibyteUser",
+      usuario
+    );
+
+    document.getElementById(
+      "usuarioLogado"
+    ).innerHTML =
+    "👤 " + usuario;
+
+    fecharLogin();
+
+    alert("Login realizado!");
+
+  } else {
+
+    alert("Usuário ou senha incorretos!");
+
+  }
+
+}
+
+// CADASTRO
+
+function fazerCadastro(){
+
+  let novoUsuario =
+    document.getElementById(
+      "novoUsuario"
+    ).value;
+
+  let novaSenha =
+    document.getElementById(
+      "novaSenha"
+    ).value;
+
+  if(novoUsuario === "" ||
+     novaSenha === ""){
+
+    alert("Preencha todos os campos!");
+    return;
+
+  }
+
+  localStorage.setItem(
+    "ibyteUsuario",
+    novoUsuario
+  );
+
+  localStorage.setItem(
+    "ibyteSenha",
+    novaSenha
+  );
+
+  alert("Cadastro realizado!");
+
+  mostrarLogin();
+
+}
+
+// LOGIN GOOGLE
+
+function loginGoogle(){
+
+  const provider =
+    new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth()
+    .signInWithPopup(provider)
+
+    .then((result) => {
+
+      let usuario =
+        result.user.displayName;
+
+      localStorage.setItem(
+        "ibyteUser",
+        usuario
+      );
+
+      document.getElementById(
+        "usuarioLogado"
+      ).innerHTML =
+      "👤 " + usuario;
+
+      fecharLogin();
+
+      alert(
+        "Login com Google realizado!"
+      );
+
+    })
+
+    .catch((error) => {
+
+      alert(
+        "Erro ao entrar com Google!"
+      );
+
+      console.log(error);
+
+    });
+
+}
+
+// LOAD
+
+window.onload = function() {
+
+  let usuarioSalvo =
+    localStorage.getItem(
+      "ibyteUser"
+    );
+
+  if(usuarioSalvo){
+
+    document.getElementById(
+      "usuarioLogado"
+    ).innerHTML =
+    "👤 " + usuarioSalvo;
+
+  }
+
+  let favoritosSalvos =
+    JSON.parse(
+      localStorage.getItem(
+        "favoritos"
+      )
+    ) || [];
+
+  let botoes =
+    document.querySelectorAll(
+      ".favorite-btn"
+    );
+
+  favoritosSalvos.forEach(function(index){
+
+    if(botoes[index]){
+
+      botoes[index]
+      .classList.add("active");
+
+    }
+
+  });
+
+}
+
+</script>
 
 function abrirPagamento() {
   window.open(
@@ -3416,6 +3760,116 @@ buttons.forEach((btn) => {
 }
 
 </style>
+
+<!-- NEVE FUTURISTA -->
+<div class="snow"></div>
+
+<style>
+
+.snow {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+/* PARTÍCULAS */
+.snow span {
+
+  position: absolute;
+
+  top: -10px;
+
+  border-radius: 50%;
+
+  background:
+  rgba(255,255,255,0.9);
+
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 20px rgba(168,85,247,0.7),
+    0 0 35px rgba(123,44,255,0.6);
+
+  animation:
+  snowFall linear infinite;
+}
+
+/* ANIMAÇÃO */
+@keyframes snowFall {
+
+  0% {
+    transform:
+    translateY(-10px);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+
+    transform:
+    translateY(110vh);
+
+    opacity: 0;
+  }
+}
+
+</style>
+
+<script>
+
+/* CONTAINER */
+const snow =
+document.querySelector(".snow");
+
+/* QUANTIDADE */
+for(let i = 0; i < 120; i++) {
+
+  let floco =
+  document.createElement("span");
+
+  /* TAMANHO */
+  let tamanho =
+  Math.random() * 4 + 2;
+
+  floco.style.width =
+  tamanho + "px";
+
+  floco.style.height =
+  tamanho + "px";
+
+  /* POSIÇÃO */
+  floco.style.left =
+  Math.random() * 100 + "%";
+
+  /* VELOCIDADE */
+  floco.style.animationDuration =
+  Math.random() * 5 + 5 + "s";
+
+  /* ATRASO */
+  floco.style.animationDelay =
+  Math.random() * 5 + "s";
+
+  /* OPACIDADE */
+  floco.style.opacity =
+  Math.random();
+
+  snow.appendChild(floco);
+}
+
+</script>
 
 </body>
 </html>
