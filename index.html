@@ -2180,6 +2180,266 @@ function pesquisarJogos(){
 
 </div>
 
+<style>
+  /* PAGINAÇÃO */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .pagination button {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #777;
+    background: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .pagination button:hover {
+    border-color: #fff;
+  }
+  
+  .pagination .page-number {
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .pagination .active {
+    color: gold;
+  }
+<style>
+
+/* PAGINAÇÃO FUTURISTA */
+.pagination {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 60px;
+  margin-bottom: 40px;
+
+  flex-wrap: wrap;
+}
+
+/* BOTÕES */
+.pagination button {
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 16px;
+
+  border:
+  2px solid rgba(255,255,255,0.15);
+
+  background:
+  rgba(255,255,255,0.05);
+
+  color: white;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 10px rgba(140,0,255,0.4),
+    0 0 25px rgba(140,0,255,0.3),
+    inset 0 0 10px rgba(255,255,255,0.05);
+}
+
+/* HOVER */
+.pagination button:hover {
+
+  transform:
+  translateY(-3px)
+  scale(1.06);
+
+  border-color: #b266ff;
+
+  box-shadow:
+    0 0 15px #a855f7,
+    0 0 35px #7b2cff,
+    0 0 60px rgba(123,44,255,0.7);
+}
+
+/* NÚMEROS */
+.pagination .page-number {
+
+  width: 58px;
+  height: 58px;
+}
+
+/* BOTÃO ATIVO */
+.pagination .active {
+
+  background:
+  linear-gradient(
+    135deg,
+    #7b2cff,
+    #b266ff
+  );
+
+  border-color: #d8b4fe;
+
+  color: gold;
+
+  box-shadow:
+    0 0 20px #c084fc,
+    0 0 40px #a855f7,
+    0 0 70px rgba(168,85,247,0.9);
+}
+
+</style>
+
+<!-- PAGINAÇÃO -->
+<div class="pagination">
+
+  <button onclick="paginaAnterior()">❮</button>
+
+  <span id="numerosPaginas"></span>
+
+  <button onclick="proximaPagina()">❯</button>
+
+</div>
+
+<script>
+
+const jogosPorPagina = 20;
+
+const jogos = Array.from(
+  document.querySelectorAll(".game-card")
+).filter(jogo => {
+
+  return jogo.dataset.category !== "web"
+  &&
+  jogo.dataset.category !== "arquivos";
+
+});
+
+let paginaAtual = 1;
+
+const totalPaginas =
+Math.ceil(
+  jogos.length / jogosPorPagina
+);
+
+function mostrarPagina(pagina) {
+
+  jogos.forEach((jogo, index) => {
+
+    const inicio =
+    (pagina - 1) * jogosPorPagina;
+
+    const fim =
+    inicio + jogosPorPagina;
+
+    if(index >= inicio && index < fim) {
+
+      /* NÃO QUEBRA O CARD */
+      jogo.style.display = "flex";
+
+    } else {
+
+      jogo.style.display = "none";
+
+    }
+
+  });
+
+  atualizarNumeros();
+
+}
+
+function atualizarNumeros() {
+
+  let html = "";
+
+  for(let i = 1; i <= totalPaginas; i++) {
+
+    if(i === paginaAtual) {
+
+      html += `
+      <button
+      class="page-number active"
+      onclick="irParaPagina(${i})">
+      ${i}
+      </button>
+      `;
+
+    } else {
+
+      html += `
+      <button
+      class="page-number"
+      onclick="irParaPagina(${i})">
+      ${i}
+      </button>
+      `;
+
+    }
+
+  }
+
+  document.getElementById(
+    "numerosPaginas"
+  ).innerHTML = html;
+
+}
+
+function irParaPagina(numero) {
+
+  paginaAtual = numero;
+
+  mostrarPagina(paginaAtual);
+
+}
+
+function proximaPagina() {
+
+  if(paginaAtual < totalPaginas) {
+
+    paginaAtual++;
+
+    mostrarPagina(paginaAtual);
+
+  }
+
+}
+
+function paginaAnterior() {
+
+  if(paginaAtual > 1) {
+
+    paginaAtual--;
+
+    mostrarPagina(paginaAtual);
+
+  }
+
+}
+
+mostrarPagina(paginaAtual);
+
+</script>
+
 </section>
 
 <section id="subscription">
