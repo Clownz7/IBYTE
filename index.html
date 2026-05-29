@@ -1791,6 +1791,22 @@ function pesquisarJogos(){
     </div>
   </div>
 
+<div class="game-card recent" data-category="acao">
+    <img src="https://i.postimg.cc/cJt62qbF/forspoken.webp">
+
+    <div class="game-content">
+      <h3>FORSPOKEN PC</h3>
+      <p>Frey Holland é uma jovem de Nova York que, de forma misteriosa, é transportada para o mundo fantástico de Athia. Ao chegar, ela descobre que possui poderes mágicos extraordinários e passa a usar um bracelete mágico falante chamado Cuff para sobreviver naquele lugar desconhecido.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/1UKtsOWB3eXEUCCj76_lVCBOpBGHnscxK/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
 <div class="game-card recent" data-category="mundoaberto">
     <img src="https://i.postimg.cc/W4wLm7wt/images.jpg">
 
@@ -2616,11 +2632,27 @@ function copiarPix(){
   </p>
 
   <!-- CANAL YOUTUBE -->
-  <a class="yt-btn" href="https://www.youtube.com/@MultiVersoRetro66" target="_blank">
+  <a class="yt-btn"
+     href="https://www.youtube.com/@MultiVersoRetro66"
+     target="_blank">
+
     📺 Nosso Canal no YouTube
+
   </a>
 
 </div>
+
+<script>
+
+function toggleSobre(){
+
+  const box = document.getElementById("sobreBox");
+
+  box.classList.toggle("ativo");
+
+}
+
+</script>
 
 <style>
 
