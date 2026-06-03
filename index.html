@@ -963,7 +963,7 @@ function mostrarRecentes() {
     
     // Mostra apenas os 4 últimos adicionados
     if (
-      index >= recentes.length - 4 &&
+      index >= recentes.length - 1000 &&
       hidden !== "true"
     ) {
       jogo.style.display = "flex";
@@ -1076,23 +1076,25 @@ function mostrarLuta() {
 
 function mostrarInfantil() {
   
-  let jogos = document.querySelectorAll(".game-card");
-  let temInfantil = false;
+  let jogos =
+    document.querySelectorAll(".game-card");
+  
+  let encontrou = false;
   
   jogos.forEach(function(jogo) {
     
-    if (jogo.classList.contains("infantil")) {
+    jogo.style.display = "none";
+    
+    if (jogo.getAttribute("data-category") === "infantil") {
       jogo.style.display = "flex";
-      temInfantil = true;
-    } else {
-      jogo.style.display = "none";
+      encontrou = true;
     }
     
   });
   
-  if (!temInfantil) {
+  if (!encontrou) {
     document.getElementById("popupText").innerText =
-      "Nenhum jogo infantil disponível no momento!";
+      "Nenhum jogo de infantil disponível no momento!";
     
     document.getElementById("popupInfantil").style.display = "flex";
   }
@@ -1678,6 +1680,22 @@ function pesquisarJogos(){
     </div>
   </div>
 
+<div class="game-card recent" data-category="acao">
+    <img src="https://i.postimg.cc/gcX6tZzf/capsule-616x353-(6).jpg">
+
+    <div class="game-content">
+      <h3>ECHOES OF THE END ENHANCED EDITION PC</h3>
+      <p>Uma jovem guerreira dotada de poderes mágicos embarca em uma jornada perigosa para resgatar seu irmão desaparecido e impedir que uma guerra devastadora consuma sua terra natal.</p>
+
+      <div class="game-actions">
+        <a href="https://drive.google.com/file/d/14qS8LrN0ucvC914SMvcwhtdw_fDuoGKZ/view?usp=drive_link"
+           class="download-btn" target="_blank">Download</a>
+
+        <button class="favorite-btn" onclick="toggleFavorito(this)">♥</button>
+      </div>
+    </div>
+  </div>
+
   <div class="game-card jogo-arquivos"
        data-category="arquivos"
        data-hidden="true">
@@ -2002,7 +2020,7 @@ function pesquisarJogos(){
     </div>
   </div>
 
-<div class="game-card" data-category="anime">
+<div class="game-card recent" data-category="anime">
     <img src="https://i.postimg.cc/y88mF3HC/capsule-616x353-(3).jpg">
 
     <div class="game-content">
@@ -3170,15 +3188,6 @@ header {
 }
 
 </style>
-
-
-<div id="popupInfantil" class="popup">
-  <div class="popup-box">
-    <h2>⚠️ Aviso</h2>
-    <p id="popupText">Nenhum jogo encontrado.</p>
-    <button onclick="fecharPopup()">OK</button>
-  </div>
-</div>
 
 <script>
  
